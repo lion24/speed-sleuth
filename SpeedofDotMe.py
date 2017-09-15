@@ -13,6 +13,7 @@ class SpeedofDotMe(SpeedtestProvider):
        time.sleep(70)
        print("[+] done, taking snapshot of the website results")
        self.driver.get_screenshot_as_file('speedofme-results.png') 
+       self.driver.close()
         
     def parseResults(self):
         pass

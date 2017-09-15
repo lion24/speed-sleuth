@@ -14,6 +14,7 @@ class SpeedtestDotNet(SpeedtestProvider):
        time.sleep(60)
        print("[+] done, taking snapshot of the website results")
        self.driver.get_screenshot_as_file('speedtest-progress.png')
+       self.driver.close()
 
     def parseResults(self):
         pass
