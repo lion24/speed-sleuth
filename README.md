@@ -22,12 +22,12 @@ make run
 to run the tool and start testing your connection against multiple providers. 
 For the moment, it's only support speedtest.net and speedof.me. Plan is to add some more. 
 
-# TODO
+## TODO
 
  - Add support for multiple browsers (firefox, opera, safari?).
  - Instead of taking pictures of the results, parse the DOM, retrieve results and print it.
  - Add continuous integration support, write unit tests (travis).
 
-# Contribution
+## Contribution
 
 I would be honored to received some PR and I will attached a high attention on reviewing them. You're welcome! :-)
