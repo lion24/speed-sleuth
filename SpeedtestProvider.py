@@ -16,10 +16,11 @@ class SpeedtestProvider(ABC):
     def __init__(self, target):
         self.target = target
         options = webdriver.ChromeOptions()
-        options.binary_location = '/usr/bin/chromium-browser'
-        options.add_argument('headless')
-        options.add_argument('window-size=1200x800')
-        options.add_argument('lang=en_US')
+        options.binary_location = '/usr/bin/google-chrome'
+        options.add_argument('--headless')
+        options.add_argument('--window-size=1400x900')
+        options.add_argument('--disable-gpu')
+        options.add_argument('--lang=en_US')
         self.driver = webdriver.Chrome(chrome_options=options)
         #As using selenium api > 2.x, this call should block until
         #readyState is hit.
