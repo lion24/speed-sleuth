@@ -1,9 +1,9 @@
 #coding: utf-8
 import time
-from SpeedtestProvider import SpeedtestProvider
+from speedtestprovider import SpeedtestProvider
 
 
-class SpeedtestDotNet(SpeedtestProvider):
+class Speedtest(SpeedtestProvider):
     def __init__(self):
         super().__init__("http://beta.speedtest.net")
 

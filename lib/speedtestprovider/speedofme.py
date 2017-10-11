@@ -1,6 +1,6 @@
 #coding: utf-8
 import time
-from SpeedtestProvider import SpeedtestProvider
+from speedtestprovider import SpeedtestProvider
 
 class SpeedofDotMe(SpeedtestProvider):
     def __init__(self):
