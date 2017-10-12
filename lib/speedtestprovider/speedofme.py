@@ -1,6 +1,6 @@
-#coding: utf-8
-import time
+# coding: utf-8
 from speedtestprovider import SpeedtestProvider
+
 
 class SpeedofDotMe(SpeedtestProvider):
     def __init__(self):
@@ -8,7 +8,8 @@ class SpeedofDotMe(SpeedtestProvider):
 
     def run(self):
         try:
-            startbtn = self.driver.find_element_by_css_selector('button#btnStart')
+            startbtn = self.driver.find_element_by_css_selector(
+                       'button#btnStart')
             startbtn.click()
             print("[+] running speedof.me, please wait")
             self.wait_for_clickable('button#btnStart')

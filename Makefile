@@ -39,6 +39,6 @@ clean:
 	find . -name '__pycache__' -exec rm -fr {} +
 
 run: clean
-	python3 speedtest.py
+	@PYTHONPATH=$(PYTHONPATH):lib/ python3 speedtest.py
 
 .PHONY: env clean lint

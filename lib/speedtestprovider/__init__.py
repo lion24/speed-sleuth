@@ -1,4 +1,4 @@
-#coding: utf-8
+# coding: utf-8
 
 import time
 import sys
@@ -12,6 +12,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
+
 class SpeedtestProvider(ABC):
     def __init__(self, target):
         self.target = target
@@ -22,13 +23,13 @@ class SpeedtestProvider(ABC):
         options.add_argument('--disable-gpu')
         options.add_argument('--lang=en_US')
         self.driver = webdriver.Chrome(chrome_options=options)
-        #As using selenium api > 2.x, this call should block until
-        #readyState is hit.
+        # As using selenium api > 2.x, this call should block until
+        # readyState is hit.
         self.driver.get(target)
 
     def wait_for_clickable(self, element, timeout=90):
-        time.sleep(2) #Hack, when element is clicked, it remains active for a
-                      #small period on the DOM before beeing staled.
+        time.sleep(2)  # Hack, when element is clicked, it remains active for a
+        # small period on the DOM before beeing staled.
         try:
             WebDriverWait(self.driver,
                           timeout,
