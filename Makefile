@@ -1,5 +1,9 @@
-PLATFORM=linux64
+PLATFORM := linux64
 VERSION=$(shell curl http://chromedriver.storage.googleapis.com/LATEST_RELEASE)
+PROJECT_NAME := "automated-speedtest"
+BOLD := \033[1m
+RESET := \033[0m
+
 export PYTHONPATH := $(PWD):$(PATH)
 export PATH := env/bin:$(PATH)
 
@@ -20,6 +24,14 @@ endif
   	| bsdtar -xvf - -C env/bin/ 
 	@chmod a+x env/bin/chromedriver
 
+check: 
+	@flake8
+
+lint:
+	@echo -e "$(BOLD)analyzing code for $(PROJECT_NAME)$(RESET)"
+	-@pylint lib/**/*.py \
+		--output-format text --reports no --output-format=colorized
+
 clean:
 	find . -name '*.pyc' -exec rm -f {} +
 	find . -name '*.pyo' -exec rm -f {} +
@@ -29,4 +41,4 @@ clean:
 run: clean
 	python3 speedtest.py
 
-.PHONY: env clean
+.PHONY: env clean lint
