@@ -43,7 +43,7 @@ class SpeedtestProvider(ABC):
                   .format(element, str(ex))
                   )
             raise
-        except:
+        except Exception:
             print("Unexpected error occured:", sys.exc_info()[0])
             raise
 

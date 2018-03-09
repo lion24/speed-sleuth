@@ -15,7 +15,7 @@ class SpeedofDotMe(SpeedtestProvider):
             self.wait_for_clickable('button#btnStart')
             print("[+] done, taking snapshot of the website results")
             self.driver.get_screenshot_as_file('speedofme-results.png')
-        except:
+        except Exception:
             print("An error occured, cleaning up...")
             self.cleanup(-1)
 

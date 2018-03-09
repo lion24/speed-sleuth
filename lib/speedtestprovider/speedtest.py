@@ -15,7 +15,7 @@ class Speedtest(SpeedtestProvider):
             self.wait_for_clickable('a.js-start-test')
             print("[+] done, taking snapshot of the website results")
             self.driver.get_screenshot_as_file('speedtest-results.png')
-        except:
+        except Exception:
             print("An error occured, cleaning up...")
             self.cleanup(-1)
 
