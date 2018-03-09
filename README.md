@@ -1,4 +1,5 @@
-# automated-speedtest
+Automated-Speedtest [![Build Status](https://travis-ci.org/lion24/automated-speedtest.svg?branch=master)](https://travis-ci.org/lion24/automated-speedtest)
+====
 Automated speedtest analyser using chrome headless feature
 
 ## Requirements
