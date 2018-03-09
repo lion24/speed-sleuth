@@ -41,4 +41,7 @@ clean:
 run: clean
 	@PYTHONPATH=$(PYTHONPATH):lib/ python3 speedtest.py
 
+test: clean
+	pytest -q test
+
 .PHONY: env clean lint

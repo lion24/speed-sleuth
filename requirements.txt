@@ -2,3 +2,4 @@ selenium
 flake8
 flake8-colors
 pylint
+pytest
