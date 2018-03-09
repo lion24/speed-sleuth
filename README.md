@@ -27,7 +27,7 @@ For the moment, it's only support speedtest.net and speedof.me. Plan is to add s
 
  - Add support for multiple browsers (firefox, opera, safari?).
  - Instead of taking pictures of the results, parse the DOM, retrieve results and print it.
- - Add continuous integration support, write unit tests (travis).
+ - ~Add continuous integration support (travis)~ done, write unit tests and extend coverage.
 
 ## Contribution
 
