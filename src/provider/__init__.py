@@ -13,9 +13,13 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 
-class SpeedtestProvider(ABC):
+class Provider(ABC):
     def __init__(self, target):
         self.target = target
+        self.driver_init()
+        self.driver.get(target)
+
+    def driver_init(self):
         options = webdriver.ChromeOptions()
         options.binary_location = '/usr/bin/google-chrome'
         options.add_argument('--headless')
@@ -25,7 +29,6 @@ class SpeedtestProvider(ABC):
         self.driver = webdriver.Chrome(chrome_options=options)
         # As using selenium api > 2.x, this call should block until
         # readyState is hit.
-        self.driver.get(target)
 
     def wait_for_clickable(self, element, timeout=90):
         time.sleep(2)  # Hack, when element is clicked, it remains active for a
@@ -50,7 +53,9 @@ class SpeedtestProvider(ABC):
     def cleanup(self, errno=0):
         self.driver.close()
         self.driver.quit()
-        sys.exit(errno)
+        self.driver = None
+        if errno:
+            sys.exit(errno)
 
     @abstractmethod
     def run(self):

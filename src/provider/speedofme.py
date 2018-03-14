@@ -1,8 +1,8 @@
 # coding: utf-8
-from speedtestprovider import SpeedtestProvider
+from provider import Provider
 
 
-class SpeedofDotMe(SpeedtestProvider):
+class SpeedofMe(Provider):
     def __init__(self):
         super().__init__("http://speedof.me")
 
