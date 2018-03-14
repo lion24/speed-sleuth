@@ -1,4 +1,4 @@
-Automated-Speedtest [![Build Status](https://travis-ci.org/lion24/automated-speedtest.svg?branch=master)](https://travis-ci.org/lion24/automated-speedtest)
+Automated-Speedtest [![Build Status](https://travis-ci.org/lion24/automated-speedtest.svg?branch=master)](https://travis-ci.org/lion24/automated-speedtest) [![Coverage Status](https://coveralls.io/repos/github/lion24/automated-speedtest/badge.svg?branch=master)](https://coveralls.io/github/lion24/automated-speedtest?branch=master)
 ====
 Automated speedtest analyser using chrome headless feature
 
