@@ -10,3 +10,5 @@ before_install:
 before_script: make
 script:
   - make test
+after_success:
+  - coveralls
