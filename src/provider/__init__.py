@@ -58,6 +58,10 @@ class Provider(ABC):
             sys.exit(errno)
 
     @abstractmethod
+    def cleanup(self, errno=0):
+        raise "Should be implemented in daughter class"
+
+    @abstractmethod
     def run(self):
         raise "Should be implemented in daughter class"
 
