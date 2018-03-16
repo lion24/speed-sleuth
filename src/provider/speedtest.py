@@ -1,4 +1,5 @@
 # coding: utf-8
+import sys
 from provider import Provider
 
 
@@ -20,6 +21,12 @@ class Speedtest(Provider):
             self.cleanup(-1)
 
         self.cleanup()
+
+    def cleanup(self, errno=0):
+        self.driver.close()
+        self.driver.quit()
+        if errno:
+            sys.exit(errno)
 
     def parseResults(self):
         pass
