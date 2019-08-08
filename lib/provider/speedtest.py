@@ -1,32 +1,43 @@
 # coding: utf-8
-import sys
+"""
+speedtest.net provider
+"""
+# Disable broad-except for now, will refine later.
+# pylint: disable=broad-except
+
 from provider import Provider
 
 
 class Speedtest(Provider):
+    """
+    This provider is used to perform test against speedtest.net
+    """
     def __init__(self):
-        super().__init__("http://beta.speedtest.net")
+        super().__init__("https://www.speedtest.net/")
+
+    def accept_eula(self):
+        """
+        Speedtest will ask you to accept license agreement before launching the test
+        This function will click on the "I consent" button to allow test to proceed.
+        """
+        self.driver.execute_script(
+            "document.querySelector(\"#_evidon-banner-acceptbutton\").click();")
 
     def run(self):
         try:
-            gobtn = self.driver.find_element_by_css_selector('a.js-start-test')
+            self.accept_eula()
+            self.wait_for_clickable('span.start-text')
+            gobtn = self.driver.find_element_by_css_selector('span.start-text')
             gobtn.click()
             print("[+] running speedtest.net, please wait")
             # Block until Go btn is available again
-            self.wait_for_clickable('a.js-start-test')
+            self.wait_for_clickable('span.start-text')
             print("[+] done, taking snapshot of the website results")
             self.driver.get_screenshot_as_file('speedtest-results.png')
-        except Exception:
-            print("An error occured, cleaning up...")
-            self.cleanup(-1)
+        except Exception as exp:
+            self.cleanup(-1, exp)
 
         self.cleanup()
 
-    def cleanup(self, errno=0):
-        self.driver.close()
-        self.driver.quit()
-        if errno:
-            sys.exit(errno)
-
-    def parseResults(self):
+    def parse_results(self):
         pass
