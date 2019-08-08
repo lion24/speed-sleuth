@@ -1,4 +1,4 @@
-from speedtestprovider.speedtest import Speedtest
+from provider.speedtest import Speedtest
 
 speedtest = Speedtest()
 speedtest.run()
