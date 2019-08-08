@@ -9,6 +9,7 @@ before_install:
   - sudo apt-get install -y bsdtar
 before_script: make
 script:
+  - make lint
   - make test
 after_success:
   - coveralls
