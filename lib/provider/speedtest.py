@@ -5,7 +5,7 @@ speedtest.net provider
 # Disable broad-except for now, will refine later.
 # pylint: disable=broad-except
 
-from selenium.common.exceptions import NoSuchElementException
+from selenium.common.exceptions import NoSuchElementException, ElementNotInteractableException
 from provider import Provider
 
 
@@ -32,7 +32,8 @@ class Speedtest(Provider):
         try:
             self.accept_eula()
             self.wait_for_clickable('a.js-start-test')
-            self.driver.find_element_by_css_selector('a.js-start-test').click()
+            self.driver.execute_script(
+                "document.querySelector(\"#container div.start-button > a\").click();")
             print("[+] running speedtest.net, please wait")
             # Block until Go btn is available again
             self.wait_for_clickable('a.js-start-test')
@@ -40,6 +41,8 @@ class Speedtest(Provider):
             self.driver.get_screenshot_as_file(filename)
             # Dismiss speedtest modal.
             self.driver.find_element_by_css_selector("a.notification-dismiss").click()
+        except ElementNotInteractableException:
+            pass
         except Exception as exp:
             self.cleanup(-1, exp)
 
