@@ -82,7 +82,7 @@ class Provider(ABC):
             sys.exit(errno)
 
     @abstractmethod
-    def run(self):
+    def run(self, filename):
         """
         Actual method that would trigger the test for the given provider.
         """

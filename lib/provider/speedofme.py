@@ -16,7 +16,7 @@ class SpeedofMe(Provider):
     def __init__(self):
         super().__init__("http://speedof.me")
 
-    def run(self):
+    def run(self, filename='speedofme-results.png'):
         try:
             startbtn = self.driver.find_element_by_css_selector(
                 'button#btnStart')
@@ -24,7 +24,7 @@ class SpeedofMe(Provider):
             print("[+] running speedof.me, please wait")
             self.wait_for_clickable('button#btnStart')
             print("[+] done, taking snapshot of the website results")
-            self.driver.get_screenshot_as_file('speedofme-results.png')
+            self.driver.get_screenshot_as_file(filename)
         except Exception as exp:
             self.cleanup(-1, exp)
 
