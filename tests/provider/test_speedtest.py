@@ -1,5 +1,5 @@
 import unittest
-import os
+import os, tempfile
 
 from selenium.webdriver.remote.webdriver import WebDriver
 from provider import Provider
@@ -18,10 +18,11 @@ class TestSpeedtest(unittest.TestCase):
 		self.assertTrue(os.path.exists("test.png"))
 
 	def test_speedtest_run_in_loop(self):
+		tmpdir = tempfile.mkdtemp()
 		for i in range(3):
-			self.speedtest.run("test-{}.png".format(i))
+			self.speedtest.run("{}/test-{}.png".format(tmpdir, i))
 		for i in range(3):
-			self.assertTrue(os.path.exists("test-{}.png".format(i)))
+			self.assertTrue(os.path.exists("{}/test-{}.png".format(tmpdir, i)))
 
 	def test_speedtest_cleanup_raise_sysexit(self):
 		self.s2 = Speedtest()
