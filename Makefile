@@ -1,5 +1,5 @@
 PLATFORM := linux64
-VERSION=$(shell curl http://chromedriver.storage.googleapis.com/LATEST_RELEASE)
+VERSION=$(shell curl https://googlechromelabs.github.io/chrome-for-testing/LATEST_RELEASE_STABLE)
 PROJECT_NAME := "automated-speedtest"
 BOLD := \033[1m
 RESET := \033[0m
@@ -17,14 +17,10 @@ env: requirements.txt
 	&& pip install -Ur $<
 
 webdriver:
-ifeq (, $(shell which bsdtar))
-	$(error "bsdtar is not install, consider doing apt-get install bsdtar")
-endif
-	curl http://chromedriver.storage.googleapis.com/$(VERSION)/chromedriver_$(PLATFORM).zip \
-  	| bsdtar -xvf - -C env/bin/ 
-	@chmod a+x env/bin/chromedriver
+	curl -o /tmp/driver.zip https://storage.googleapis.com/chrome-for-testing-public/$(VERSION)/$(PLATFORM)/chromedriver-$(PLATFORM).zip \
+  		&& unzip -oj /tmp/driver.zip -d env/bin && rm -rf /tmp/driver.zip
 
-check: 
+check:
 	@flake8
 
 lint:
@@ -39,7 +35,7 @@ clean:
 	find . -name '__pycache__' -exec rm -fr {} +
 
 run: clean
-	@PYTHONPATH=$(PYTHONPATH):lib/ python3 speedtest.py
+	python main.py
 
 test: clean
 	pytest -q tests

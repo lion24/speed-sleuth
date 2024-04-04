@@ -1,22 +1,23 @@
 # coding: utf-8
+# Disable broad-except for now, will refine later.
+# pylint: disable=broad-except
 """
 Generic Provider class which provides an abstraction for the different drivers
 we would like to use.
 """
 
-import time
 import sys
-import traceback
 from abc import ABC, abstractmethod
-from selenium import webdriver
+from browser import BrowserInterface
 from selenium.common.exceptions import (
-    StaleElementReferenceException,
+    NoSuchElementException,
+    ElementNotInteractableException,
     TimeoutException
 )
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-
+from selenium.webdriver.remote.webelement import WebElement
 
 class Provider(ABC):
     """
@@ -24,60 +25,79 @@ class Provider(ABC):
     This class also contains generic methods which needs to be implemented
     in the concrete provider classes.
     """
-    def __init__(self, target):
-        self.target = target
-        self.driver = self.driver_init()
-        self.driver.get(target)
+    def __init__(self, browser: BrowserInterface):
+        try:
+            self.driver = browser.load_driver()
+        except Exception as e:
+            print("browser.load_driver() exception: ", e)
 
-    @staticmethod
-    def driver_init():
-        """
-        Init a driver. Right now, only chrome is support, plan is to add support for
-        more drivers.
-        """
-        options = webdriver.ChromeOptions()
-        options.binary_location = '/usr/bin/google-chrome'
-        options.add_argument('--headless')
-        options.add_argument('--window-size=1400x900')
-        options.add_argument('--disable-gpu')
-        options.add_argument('--lang=en_US')
-        return webdriver.Chrome(chrome_options=options)
-        # As using selenium api > 2.x, this call should block until
-        # readyState is hit.
-
-    def wait_for_clickable(self, element, timeout=90):
+    def wait_to_be_visible(self, element: WebElement, timeout=90):
         """
         Method that wait until an element is present and clickable in the DOM.
         """
-        time.sleep(2)  # Hack, when element is clicked, it remains active for a
-        # small period on the DOM before beeing staled.
+        print("wait_to_be_visible...")
+        errors = [NoSuchElementException, ElementNotInteractableException]
         try:
-            WebDriverWait(self.driver,
-                          timeout,
-                          poll_frequency=2,
-                          ignored_exceptions=(StaleElementReferenceException)
-                          ).until(
-                              EC.element_to_be_clickable(
-                                  (By.CSS_SELECTOR, element)))
-        except TimeoutException as ex:
-            print("Timeout in finding element {} from DOM, reason: {}"
-                  .format(element, str(ex))
-                  )
-            raise
-        except Exception:
-            print("Unexpected error occured:", sys.exc_info()[0])
-            raise
+            wait = WebDriverWait(
+                self.driver,
+                timeout=timeout,
+                poll_frequency=.2,
+                ignored_exceptions=errors)
 
-    def cleanup(self, errno=0, exp=None):
+            res = wait.until(lambda d: element.is_displayed() or False)
+            print(f"res: {res}")
+            return True
+        except TimeoutException as e:
+            print("wait_for_clickable timed out waiting: ", e)
+            return False
+        except Exception as e:
+            print("wait_for_clickable expection occurred: ", e)
+            return False
+
+    def wait_for_element(self, locator, timeout=120) -> WebElement:
         """
-        If any error occured, we will cleanup reserved resources.
+        Wait for an element to be visible and returns it
+        If not found, NoSuchElementException is raised.
+
+        :param locator: A tuple of (By, locator) to find the element.
         """
-        if exp:
-            print("An error occured: " + exp)
-            traceback.print_exc()
-        self.driver.close()
-        self.driver.quit()
-        self.driver = None
+        try:
+            element = WebDriverWait(self.driver, timeout).until(
+                EC.visibility_of_element_located(locator)
+            )
+            return element
+        except TimeoutException as e:
+            raise NoSuchElementException(
+                f"Element with locator {locator} was not visible after {timeout} second") from e
+
+    def wait_for_button_clickable(self, locator, timeout=120) -> WebElement:
+        """
+        Wait for a button to be visible and clickable
+        If not found, NoSuchElementException is raised.
+
+        :param locator: A tuple of (By, locator) to find the element.
+
+        Returns:
+            WebElement: The button identified by locator
+        """
+        try:
+            element = WebDriverWait(self.driver, timeout).until(
+                EC.element_to_be_clickable(locator)
+            )
+            return element
+        except TimeoutException as e:
+            raise NoSuchElementException(
+                f"Element with locator {locator} was not clickable after {timeout} second") from e
+
+    def cleanup(self, errno=0):
+        """
+        Cleanup every reserved resources.
+        """
+        if self.driver:
+            self.driver.close()
+            self.driver.quit()
+            self.driver = None
+
         if errno:
             sys.exit(errno)
 
@@ -86,11 +106,11 @@ class Provider(ABC):
         """
         Actual method that would trigger the test for the given provider.
         """
-        raise "Should be implemented in daughter class"
+        raise NotImplementedError("Should be implemented in daughter class")
 
     @abstractmethod
     def parse_results(self):
         """
         Method that would gather results from the speedtest for the given provider
         """
-        raise "Should be implemented in daughter class"
+        raise NotImplementedError("Should be implemented in daughter class")
