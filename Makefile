@@ -33,6 +33,7 @@ clean:
 	find . -name '*.pyo' -exec rm -f {} +
 	find . -name '*~' -exec rm -f {} +
 	find . -name '__pycache__' -exec rm -fr {} +
+	find . -name '.pytest_cache' -exec rm -fr {} +
 
 run: clean
 	python main.py
