@@ -58,17 +58,32 @@ dependencies = [
     "flake8",
     "black",
     "isort",
+    "docformatter[tomli]",
 ]
+
+[tool.black]
+line-length = 79
+
+[tool.isort]
+profile = "black"
+line_length = 79
+
+[tool.docformatter]
+recursive = true
+force-wrap = true
+blank = true
 
 [tool.hatch.envs.style.scripts]
 check = [
     "flake8 .",
-    "black --check --diff .",
+    "black -l 79 --check --diff .",
     "isort --check-only --diff .",
+    "docformatter -c ."
 ]
 fmt = [
+    "docformatter --in-place .",
     "isort .",
-    "black .",
+    "black -l 79 .",
     "check",
 ]
 

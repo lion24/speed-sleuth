@@ -1,10 +1,12 @@
+import os
+import tempfile
 import unittest
-import os, tempfile
 
-from selenium.webdriver.remote.webdriver import WebDriver
 from browser.chromium import ChromiumBrower
 from provider import Provider
 from provider.speedtest import Speedtest
+from selenium.webdriver.remote.webdriver import WebDriver
+
 
 class TestSpeedtest(unittest.TestCase):
     def test_speedtest(self):
