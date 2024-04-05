@@ -83,3 +83,13 @@ dependencies = [
 [tool.hatch.envs.test.scripts]
 run-coverage = "pytest --cov-config=pyproject.toml --cov=pkg --cov=tests"
 run = "run-coverage --no-cov"
+
+[tool.hatch.envs.docs]
+dependencies = [
+    "mkdocs",
+    "mkdocstrings[python]>=0.18",
+]
+
+[tool.hatch.envs.docs.scripts]
+build = "mkdocs build --clean --strict"
+serve = "mkdocs serve --dev-addr localhost:8000"
