@@ -17,7 +17,7 @@ from selenium.webdriver.chromium.options import ChromiumOptions
 from selenium.webdriver.chromium.service import ChromiumService
 from selenium.webdriver.remote.webdriver import WebDriver
 
-from . import BrowserInterface
+from speed_sleuth.browser import BrowserInterface
 
 BINARY_PATH = "/snap/chromium/2805/usr/lib/chromium-browser/chrome"
 

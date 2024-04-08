@@ -1,3 +1,3 @@
 # Documentation for the Speedtest provider
 
-::: lib.provider.speedtest
+::: speed_sleuth.provider.speedtest

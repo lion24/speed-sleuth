@@ -5,10 +5,11 @@
 
 import traceback
 
-from browser import BrowserInterface
-from provider import Provider
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.common.by import By
+
+from speed_sleuth.browser import BrowserInterface
+from speed_sleuth.provider import Provider
 
 
 class Speedofme(Provider):

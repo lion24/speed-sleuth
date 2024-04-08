@@ -1,3 +1,3 @@
 # Chromium
 
-::: lib.browser.chromium
+::: speed_sleuth.browser.chromium

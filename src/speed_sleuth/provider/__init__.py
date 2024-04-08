@@ -7,7 +7,6 @@ drivers we would like to use."""
 import sys
 from abc import ABC, abstractmethod
 
-from browser import BrowserInterface
 from selenium.common.exceptions import (
     ElementNotInteractableException,
     NoSuchElementException,
@@ -16,6 +15,8 @@ from selenium.common.exceptions import (
 from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
+
+from speed_sleuth.browser import BrowserInterface
 
 
 class Provider(ABC):

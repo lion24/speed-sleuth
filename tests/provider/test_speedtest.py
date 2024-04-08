@@ -2,10 +2,11 @@ import os
 import tempfile
 import unittest
 
-from browser.chromium import ChromiumBrower
-from provider import Provider
-from provider.speedtest import Speedtest
 from selenium.webdriver.remote.webdriver import WebDriver
+
+from speed_sleuth.browser.chromium import ChromiumBrower
+from speed_sleuth.provider import Provider
+from speed_sleuth.provider.speedtest import Speedtest
 
 
 class TestSpeedtest(unittest.TestCase):

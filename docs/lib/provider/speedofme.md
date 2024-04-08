@@ -1,3 +1,3 @@
 # Documentation for the speedofme provider
 
-::: lib.provider.speedofme
+::: speed_sleuth.provider.speedofme

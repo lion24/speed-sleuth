@@ -1,3 +1,3 @@
 # Documentation for the provider module
 
-::: lib.provider
+::: speed_sleuth.provider

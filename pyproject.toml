@@ -39,10 +39,10 @@ classifiers = [
 Repository = "https://github.com/lion24/speed-sleuth.git"
 
 [tool.hatch.version]
-path = "lib/__init__.py"
+path = "src/speed_sleuth/version.py"
 
 [tool.hatch.build.targets.wheel]
-packages = ["lib/"]
+packages = ["src/speed_sleuth/"]
 
 [tool.hatch.build.targets.sdist]
 include = [
@@ -96,7 +96,7 @@ dependencies = [
 ]
 
 [tool.hatch.envs.test.scripts]
-run-coverage = "pytest --cov-config=pyproject.toml --cov=pkg --cov=tests"
+run-coverage = "pytest --cov-config=pyproject.toml --cov=speed_sleuth --cov=tests"
 run = "run-coverage --no-cov"
 
 [tool.hatch.envs.docs]
@@ -108,3 +108,8 @@ dependencies = [
 [tool.hatch.envs.docs.scripts]
 build = "mkdocs build --clean --strict"
 serve = "mkdocs serve --dev-addr localhost:8000"
+
+[tool.pytest.ini_options]
+addopts = [
+    "--import-mode=importlib",
+]

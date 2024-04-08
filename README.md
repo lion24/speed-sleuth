@@ -23,6 +23,15 @@ make run
 to run the tool and start testing your connection against multiple providers.
 For the moment, it's only support speedtest.net and speedof.me. Plan is to add some more.
 
+## Some notes
+
+Install editable dependencies: [https://setuptools.pypa.io/en/latest/userguide/development_mode.html]
+
+```sh
+hatch -e default shell
+python -m pip install --editable .
+```
+
 ## TODO
 
  - Add support for multiple browsers (firefox, opera, safari?).

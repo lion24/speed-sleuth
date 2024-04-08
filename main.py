@@ -2,16 +2,12 @@
 # flake8: noqa
 
 import argparse
-import os
 import sys
 
-sys.path += [os.path.join(os.getcwd(), "lib")]
-
-
 try:
-    from browser.chromium import ChromiumBrower
-    from provider.speedofme import *  # to import object into the global table.
-    from provider.speedtest import *  # to import object into the global table.
+    from speed_sleuth.browser.chromium import ChromiumBrower
+    from speed_sleuth.provider.speedofme import *  # to import object into the global table.
+    from speed_sleuth.provider.speedtest import *  # to import object into the global table.
 except Exception as e:
     print("Fail to load provider: ", e)
     sys.exit(1)
