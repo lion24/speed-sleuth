@@ -70,13 +70,23 @@ class Speedtest(Provider):
         """
         try:
             eula_reject_btn = self.wait_for_element(
-                (By.CSS_SELECTOR, "button#onetrust-reject-all-handler")
+                (By.CSS_SELECTOR, "button#onetrust-reject-all-handler"),
+                timeout=5,
             )
 
             if eula_reject_btn:
                 eula_reject_btn.click()
         except NoSuchElementException:
-            pass  # Silently ignore this exception which can occured.
+            # onetrust-accept-btn-handler
+            eula_accept_btn = self.wait_for_element(
+                (By.CSS_SELECTOR, "button#onetrust-accept-btn-handler"),
+                timeout=5,
+            )
+
+            if eula_accept_btn:
+                eula_accept_btn.click()
+        except Exception:
+            pass
 
     def dismiss_notification(self):
         """Dismisses notifications or banners that may interfere with the test.

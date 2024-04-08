@@ -4,13 +4,9 @@
 import argparse
 import sys
 
-try:
-    from speed_sleuth.browser.chromium import ChromiumBrower
-    from speed_sleuth.provider.speedofme import *  # to import object into the global table.
-    from speed_sleuth.provider.speedtest import *  # to import object into the global table.
-except Exception as e:
-    print("Fail to load provider: ", e)
-    sys.exit(1)
+from speed_sleuth.browser import BrowserFactory
+from speed_sleuth.provider.speedofme import *  # to import object into the global table.
+from speed_sleuth.provider.speedtest import *  # to import object into the global table.
 
 providers = ["speedtest", "speedofme"]
 
@@ -21,11 +17,13 @@ parser.add_argument(
 )
 args = parser.parse_args()
 
+browser = BrowserFactory.get_browser()
+
 for provider in args.providers:
     class_name = provider.capitalize()
     ProviderClass = globals().get(class_name)
     if ProviderClass:
-        instance = ProviderClass(ChromiumBrower())
+        instance = ProviderClass(browser)
         for i in range(args.count):
             instance.run(f"{provider}-{i}.png")
     else:
