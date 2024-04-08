@@ -13,8 +13,7 @@ Chromium-specific options.
 """
 
 from selenium import webdriver
-from selenium.webdriver.chromium.options import ChromiumOptions
-from selenium.webdriver.chromium.service import ChromiumService
+from selenium.webdriver.chromium import options, service
 from selenium.webdriver.remote.webdriver import WebDriver
 
 from speed_sleuth.browser import BrowserInterface
@@ -62,14 +61,13 @@ class ChromiumBrower:
             >>> driver = chromium_browser.load_driver()
 
         """
-        service = ChromiumService()
-        options = ChromiumOptions()
-        options.binary_location = BINARY_PATH
+        chrome_service = service.ChromiumService()
+        chrome_options = options.ChromiumOptions()
+        chrome_options.binary_location = BINARY_PATH
         # options.add_argument('--headless')
-        options.add_argument("--window-size=1400x900")
-        options.add_argument("--disable-gpu")
-        options.add_argument("--lang=en_US")
-        driver = webdriver.Chrome(service=service, options=options)
-        return driver
+        chrome_options.add_argument("--window-size=1400x900")
+        chrome_options.add_argument("--disable-gpu")
+        chrome_options.add_argument("--lang=en_US")
+        return webdriver.Chrome(service=chrome_service, options=chrome_options)
         # As using selenium api > 2.x, this call should block until
         # readyState is hit.
