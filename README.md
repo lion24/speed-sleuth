@@ -7,21 +7,21 @@ Automated speedtest analyser using chrome headless feature
  - Python3 and virtualenv (python3-virtualenv)
  - A google chrome that support headless mode. The latest version supports by default this mode (https://www.google.com/chrome)
  - You should also have `bsdtar` installed to unpack the webdriver correctly.
- 
+
 ## How to run
 
-just type: 
+just type:
 ```
 make
 ```
 to bootstrap the virtualenv and install all the necessary python dependencies.
 
-Then, once dependencies have been fetched, you can do: 
+Then, once dependencies have been fetched, you can do:
 ```
 make run
 ```
-to run the tool and start testing your connection against multiple providers. 
-For the moment, it's only support speedtest.net and speedof.me. Plan is to add some more. 
+to run the tool and start testing your connection against multiple providers.
+For the moment, it's only support speedtest.net and speedof.me. Plan is to add some more.
 
 ## TODO
 
