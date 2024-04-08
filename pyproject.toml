@@ -1,0 +1,115 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "speed-sleuth"
+dynamic = ["version"]
+description = "Automated speedtest analyser using selenium"
+readme = "README.md"
+requires-python = ">=3.8"
+authors = [
+    {name = "Lionel Hubaut", email = "me@nullbyte.be"}
+]
+maintainers = [
+    {name = "Lionel Hubaut", email = "me@nullbyte.be"}
+]
+dependencies = [
+    "selenium==4.19.0",
+]
+license = { file = "LICENSE.md" }
+keywords = ["selenium", "selenium-webdriver", "webdriver", "headless", "speedtest"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "Intended Audience :: System Administrators",
+    "Intended Audience :: Telecommunications Industry",
+    "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Topic :: Software Development :: Testing",
+    "Topic :: Software Development :: Quality Assurance",
+    "Topic :: System :: Networking",
+    "Topic :: System :: Networking :: Monitoring"
+]
+
+[project.urls]
+Repository = "https://github.com/lion24/speed-sleuth.git"
+
+[tool.hatch.version]
+path = "src/speed_sleuth/version.py"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/speed_sleuth/"]
+
+[tool.hatch.build.targets.sdist]
+include = [
+    "/tests",
+]
+exclude = [
+    "*.png",
+]
+
+[tool.hatch.envs.style]
+detached = true
+dependencies = [
+    "flake8",
+    "black",
+    "isort",
+    "docformatter[tomli]",
+]
+
+[tool.black]
+line-length = 79
+
+[tool.isort]
+profile = "black"
+line_length = 79
+
+[tool.docformatter]
+recursive = true
+force-wrap = true
+blank = true
+
+[tool.hatch.envs.style.scripts]
+check = [
+    "flake8 .",
+    "black -l 79 --check --diff .",
+    "isort --check-only --diff .",
+    "docformatter -c ."
+]
+fmt = [
+    "docformatter --in-place .",
+    "isort .",
+    "black -l 79 .",
+    "check",
+]
+
+[tool.hatch.envs.test]
+type = "virtual"
+dependencies = [
+    "coverage[toml]",
+    "pytest",
+    "pytest-cov",
+]
+
+[tool.hatch.envs.test.scripts]
+run-coverage = "pytest --cov-config=pyproject.toml --cov=speed_sleuth --cov=tests"
+run = "run-coverage --no-cov"
+
+[tool.hatch.envs.docs]
+dependencies = [
+    "mkdocs",
+    "mkdocstrings[python]>=0.18",
+]
+
+[tool.hatch.envs.docs.scripts]
+build = "mkdocs build --clean --strict"
+serve = "mkdocs serve --dev-addr localhost:8000"
+
+[tool.pytest.ini_options]
+addopts = [
+    "--import-mode=importlib",
+]

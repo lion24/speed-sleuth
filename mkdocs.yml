@@ -1,0 +1,9 @@
+site_name: "Speed Sleuth 🕵️"
+
+theme:
+  name: "readthedocs"
+
+plugins:
+- search
+- mkdocstrings:
+    default_handler: python
