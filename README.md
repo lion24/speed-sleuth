@@ -1,4 +1,4 @@
-Automated-Speedtest [![Build Status](https://travis-ci.org/lion24/automated-speedtest.svg?branch=master)](https://travis-ci.org/lion24/automated-speedtest) [![Coverage Status](https://coveralls.io/repos/github/lion24/automated-speedtest/badge.svg?branch=master)](https://coveralls.io/github/lion24/automated-speedtest?branch=master)
+Speed Sleuth 🕵️ [![Tests](https://github.com/lion24/speed-sleuth/actions/workflows/test.yml/badge.svg?branch=main)](https://travis-ci.org/lion24/automated-speedtest) [![codecov](https://codecov.io/gh/lion24/speed-sleuth/graph/badge.svg?token=A4VHEY9KTT)](https://codecov.io/gh/lion24/speed-sleuth)
 ====
 Automated speedtest analyser using chrome headless feature
 
