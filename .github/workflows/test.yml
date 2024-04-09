@@ -22,4 +22,9 @@ jobs:
         python -m pip install --upgrade pip
         pip install hatch
     - name: Run unit tests
-      run: hatch run test:run -- -k unit
+      run: hatch run test:run-coverage -- -k unit
+    - name: Upload coverage reports to Codecov
+      uses: codecov/codecov-action@v4.0.1
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }}
+        slug: lion24/speed-sleuth

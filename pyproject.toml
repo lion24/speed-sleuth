@@ -100,7 +100,7 @@ dependencies = [
 ]
 
 [tool.hatch.envs.test.scripts]
-run-coverage = "pytest -rA --cov-config=pyproject.toml --cov=speed_sleuth --cov=tests {args}"
+run-coverage = "pytest -rA --cov-config=pyproject.toml --cov=speed_sleuth --cov=tests --cov-report xml {args}"
 run = "run-coverage --no-cov"
 dry-run = "run --collect-only"
 
