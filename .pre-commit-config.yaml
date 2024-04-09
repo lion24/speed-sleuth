@@ -12,11 +12,11 @@ repos:
         name: style format
         entry: hatch run style:fmt
         language: system
-        pass_filename: false
+        pass_filenames: false
         verbose: true
     -   id: linter
         name: lint checker
         entry: hatch run style:check
         language: system
-        pass_filename: false
+        pass_filenames: false
         verbose: true
