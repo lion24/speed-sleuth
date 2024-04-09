@@ -74,7 +74,7 @@ force-wrap = true
 blank = true
 
 [tool.hatch.envs.default.scripts]
-speedtest = "python main.py -p speedtest"
+main = "python main.py {args}"
 
 
 [tool.hatch.envs.style.scripts]

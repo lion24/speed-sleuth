@@ -4,28 +4,29 @@ Automated speedtest analyser using chrome headless feature
 
 ## Requirements
 
- - Python3 and virtualenv (python3-virtualenv)
- - A google chrome that support headless mode. The latest version supports by default this mode (https://www.google.com/chrome)
- - You should also have `bsdtar` installed to unpack the webdriver correctly.
+ - Python3 and `hatch` https://hatch.pypa.io/latest/
+ - A browser supported by the selenium framework (currently only Chromium and Edge implemented)
 
 ## How to run
 
 just type:
-```
-make
-```
-to bootstrap the virtualenv and install all the necessary python dependencies.
 
-Then, once dependencies have been fetched, you can do:
+```sh
+hatch run main
 ```
-make run
-```
+
 to run the tool and start testing your connection against multiple providers.
 For the moment, it's only support speedtest.net and speedof.me. Plan is to add some more.
 
+You can only test against a single provider, for example speedtest:
+
+```sh
+hatch run main -p speedtest
+```
+
 ## Some notes
 
-Install editable dependencies: [https://setuptools.pypa.io/en/latest/userguide/development_mode.html]
+Install editable dependencies: https://setuptools.pypa.io/en/latest/userguide/development_mode.html
 
 ```sh
 hatch -e default shell
