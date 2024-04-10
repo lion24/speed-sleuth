@@ -110,6 +110,7 @@ dry-run = "run --collect-only"
 [tool.hatch.envs.docs]
 dependencies = [
     "mkdocs",
+    "mkdocs-material",
     "mkdocstrings[python]>=0.18",
 ]
 
