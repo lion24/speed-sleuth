@@ -1,7 +1,7 @@
 site_name: "Speed Sleuth 🕵️"
 
 theme:
-  name: "readthedocs"
+  name: material
 
 plugins:
 - search
