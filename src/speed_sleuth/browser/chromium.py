@@ -39,6 +39,13 @@ class ChromiumBrower:
 
     """
 
+    def __init__(self, binary_path=None):
+        # Workaround to keep backward compatibility
+        if binary_path:
+            self.binary_path = binary_path
+        else:
+            self.binary_path = BINARY_PATH
+
     def load_driver(self) -> WebDriver:
         """Initializes and returns a Selenium WebDriver instance configured for
         the Chrome browser.
@@ -63,7 +70,7 @@ class ChromiumBrower:
         """
         chrome_service = service.ChromiumService()
         chrome_options = options.ChromiumOptions()
-        chrome_options.binary_location = BINARY_PATH
+        chrome_options.binary_location = self.binary_path
         # options.add_argument('--headless')
         chrome_options.add_argument("--window-size=1400x900")
         chrome_options.add_argument("--disable-gpu")

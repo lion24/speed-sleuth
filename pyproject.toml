@@ -7,7 +7,7 @@ name = "speed-sleuth"
 dynamic = ["version"]
 description = "Automated speedtest analyser using selenium"
 readme = "README.md"
-requires-python = ">=3.8"
+requires-python = ">=3.10"
 authors = [
     {name = "Lionel Hubaut", email = "me@nullbyte.be"}
 ]
@@ -27,8 +27,7 @@ classifiers = [
     "Intended Audience :: Telecommunications Industry",
     "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
     "Programming Language :: Python :: 3 :: Only",
-    "Programming Language :: Python :: 3.8",
-    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
     "Topic :: Software Development :: Testing",
     "Topic :: Software Development :: Quality Assurance",
     "Topic :: System :: Networking",
@@ -52,8 +51,15 @@ exclude = [
     "*.png",
 ]
 
+[tool.hatch.envs.default]
+python = "3.10"
+
+[tool.hatch.envs.default.scripts]
+main = "python main.py {args}"
+
 [tool.hatch.envs.style]
 detached = true
+python = "3.10"
 dependencies = [
     "flake8",
     "black",
@@ -72,9 +78,6 @@ line_length = 79
 recursive = true
 force-wrap = true
 blank = true
-
-[tool.hatch.envs.default.scripts]
-main = "python main.py {args}"
 
 
 [tool.hatch.envs.style.scripts]
