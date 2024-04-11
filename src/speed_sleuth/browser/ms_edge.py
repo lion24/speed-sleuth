@@ -49,7 +49,8 @@ class MSEdgeBrowser:
         edge_service = service.Service()
         edge_options = options.Options()
 
-        edge_options.binary_location = self.binary_path
+        if self.binary_path:
+            edge_options.binary_location = self.binary_path
         edge_options.add_argument("--window-size=1400x900")
         edge_options.add_argument("--disable-gpu")
         edge_options.add_argument("--lang=en_US")

@@ -90,6 +90,10 @@ class BrowserFactory:
                 from speed_sleuth.browser.ms_edge import MSEdgeBrowser
 
                 return MSEdgeBrowser(path)
+            case "google-chrome":
+                from speed_sleuth.browser.chromium import ChromiumBrower
+
+                return ChromiumBrower(path)
             case _:
                 raise ValueError(
                     f"No supported browser found for {default_browser}"
@@ -114,41 +118,63 @@ class BrowserFactory:
                 supported by this method.
 
         """
-        browser = "chrome"
-        path = "open"  # Fall back to default "open"
+        # selenium is able to cope without.
         osPlatform = platform.system()
 
         match osPlatform:
-            case "Windows":
+            case "Windows":  # TODO FIX THIS MESS and use webbrowser
+                browser = ""
+                path = None
                 try:
                     from winreg import (
                         HKEY_CLASSES_ROOT,
                         HKEY_CURRENT_USER,
                         OpenKey,
-                        QueryValueEx,
                     )
 
-                    with OpenKey(
+                    reg_key = OpenKey(
                         HKEY_CURRENT_USER,
                         r"SOFTWARE\Microsoft\Windows\Shell\Associations\UrlAssociations\http\UserChoice",  # noqa: E501
-                    ) as reg_key:
-                        browser = QueryValueEx(reg_key, "ProgId")[0]
+                    )
+                    browser = reg_key.QueryValueEx(reg_key, "ProgId")[0]
+                    reg_key.close()
 
-                    with OpenKey(
+                    reg_key = OpenKey(
                         HKEY_CLASSES_ROOT,
                         r"{}\shell\open\command".format(browser),
-                    ) as reg_key:
-                        browser_path_tuple = QueryValueEx(reg_key, None)
-                        path = browser_path_tuple[0].split('"')[1]
+                    )
+                    browser_path_tuple = reg_key.QueryValueEx(reg_key, None)
+                    path = browser_path_tuple[0].split('"')[1]
+                    reg_key.close()
+
+                    return browser, path
+                except ImportError:
+                    pass
                 except Exception as e:
                     print(
                         "Failed to look up default browser in system registry: ",  # noqa: E501
                         e,
                     )
 
+            case "Linux":
+                try:
+                    import gc
+                    import webbrowser
+
+                    browser_instance = webbrowser.get()
+                    browser = browser_instance.basename
+                    browser_instance = (
+                        None  # Manually free to avoid calling GC
+                    )
+                    del browser_instance
+                    gc.collect()
+                    print(f"browser: {browser}")
+
+                    return browser, None
+                except ImportError as e:
+                    print("Unable to import webbrowser library: ", str(e))
+
             case _:
                 raise OsNotFoundException(
                     f"Your OS {osPlatform} is not yet implement."
                 )
-
-        return browser, path
