@@ -18,8 +18,6 @@ from selenium.webdriver.remote.webdriver import WebDriver
 
 from speed_sleuth.browser import BrowserInterface
 
-BINARY_PATH = "/snap/chromium/2805/usr/lib/chromium-browser/chrome"
-
 
 @BrowserInterface.register
 class ChromiumBrower:
@@ -33,18 +31,18 @@ class ChromiumBrower:
     Chromium browser instance, including setting the binary location,
     window size, and disabling GPU acceleration.
 
-    Methods:     load_driver(): Creates and returns a configured
-    Selenium WebDriver instance                    for the Chromium
-    browser.
+    Attributes:
+        binary_path (str, optional): An optional location of the webdriver
+            location. Default to None.
+
+    Methods:
+        load_driver(): Creates and returns a configured Selenium WebDriver
+            instance for the Chromium browser.
 
     """
 
     def __init__(self, binary_path=None):
-        # Workaround to keep backward compatibility
-        if binary_path:
-            self.binary_path = binary_path
-        else:
-            self.binary_path = BINARY_PATH
+        self.binary_path = binary_path
 
     def load_driver(self) -> WebDriver:
         """Initializes and returns a Selenium WebDriver instance configured for
@@ -64,13 +62,21 @@ class ChromiumBrower:
             Chromium browser.
 
         Example:
+            Initiate a chromium browser ready for testing:
+            ```pycon
+            >>> from speed_sleuth.browser.chromium import ChromiumBrower
             >>> chromium_browser = ChromiumBrower()
             >>> driver = chromium_browser.load_driver()
+            >>> driver # doctest: +ELLIPSIS
+            <selenium.webdriver.chrome.webdriver.WebDriver (...)>
+            >>>
+            ```
 
         """
         chrome_service = service.ChromiumService()
         chrome_options = options.ChromiumOptions()
-        chrome_options.binary_location = self.binary_path
+        if self.binary_path:
+            chrome_options.binary_location = self.binary_path
         # options.add_argument('--headless')
         chrome_options.add_argument("--window-size=1400x900")
         chrome_options.add_argument("--disable-gpu")

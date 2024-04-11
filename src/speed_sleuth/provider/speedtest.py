@@ -37,16 +37,18 @@ class Speedtest(Provider):
     or notifications, initiating the speed test, and capturing the
     results as screenshots.
 
-    Attributes:     browser (BrowserInterface): A browser instance that
-    adheres to the BrowserInterface, used for web interactions.
+    Attributes:
+        browser: A browser instance that adheres to the BrowserInterface, used
+            for web interactions.
 
     """
 
     def __init__(self, browser: BrowserInterface):
         """Initializes the Speedtest provider with a browser instance.
 
-        Parameters:     browser (BrowserInterface): The browser instance
-        through which the speed test will be conducted on speedtest.net.
+        Parameters:
+            browser: The browser instance through which the speed test will be
+                conducted on speedtest.net.
 
         """
         super().__init__(browser)
@@ -55,7 +57,8 @@ class Speedtest(Provider):
     def __str__(self) -> str:
         """Provides a string representation of the Speedtest instance.
 
-        Returns:     str: A simple string identifier for this provider.
+        Returns:
+            str: A simple string reprensentation for this provider.
 
         """
         return "speedtest"
@@ -105,7 +108,7 @@ class Speedtest(Provider):
         except NoSuchElementException:
             pass  # Silently ignore this exception which can occured.
 
-    def run(self, filename="speedtest-result.png"):
+    def run(self, filename: str = "speedtest-result.png"):
         """Executes the speed test on speedtest.net and captures a screenshot
         of the results.
 
@@ -113,9 +116,9 @@ class Speedtest(Provider):
         result capture, handling possible UI elements and exceptions
         along the way.
 
-        Parameters:     filename (str): The file path where the result
-        screenshot will be saved.                     Defaults to
-        'speedtest-result.png'.
+        Parameters:
+            filename: The file path where the result screenshot will be saved.
+                Defaults to 'speedtest-result.png'.
 
         """
         code = 0

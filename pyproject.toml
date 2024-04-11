@@ -64,7 +64,6 @@ dependencies = [
     "flake8",
     "black",
     "isort",
-    "docformatter[tomli]",
 ]
 
 [tool.black]
@@ -74,21 +73,14 @@ line-length = 79
 profile = "black"
 line_length = 79
 
-[tool.docformatter]
-recursive = true
-force-wrap = true
-blank = true
-
 
 [tool.hatch.envs.style.scripts]
 check = [
     "flake8 .",
     "black -l 79 --check --diff .",
     "isort --check-only --diff .",
-    "docformatter -c ."
 ]
 fmt = [
-    "docformatter --in-place .",
     "isort .",
     "black -l 79 .",
     "check",
@@ -116,7 +108,7 @@ dependencies = [
 
 [tool.hatch.envs.docs.scripts]
 build = "mkdocs build --clean --strict"
-serve = "mkdocs serve --dev-addr localhost:8000"
+serve = "mkdocs serve --dev-addr localhost:8000 -w ."
 deploy = "mkdocs gh-deploy --force"
 
 [tool.pytest.ini_options]

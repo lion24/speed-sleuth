@@ -3,6 +3,9 @@ site_name: "Speed Sleuth 🕵️"
 theme:
   name: material
 
+extra_css:
+  - style.css
+
 plugins:
 - search
 - mkdocstrings:
