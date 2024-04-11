@@ -1,4 +1,5 @@
 Speed Sleuth 🕵️ [![Tests](https://github.com/lion24/speed-sleuth/actions/workflows/test.yml/badge.svg?branch=main)](https://github.com/lion24/speed-sleuth) [![codecov](https://codecov.io/gh/lion24/speed-sleuth/graph/badge.svg?token=A4VHEY9KTT)](https://codecov.io/gh/lion24/speed-sleuth)
+![GH Page deploy](https://github.com/lion24/speed-sleuth/actions/workflows/docs.yml/badge.svg)
 ====
 Automated speedtest analyser using chrome headless feature
 

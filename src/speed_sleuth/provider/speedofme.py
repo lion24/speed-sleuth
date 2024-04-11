@@ -22,18 +22,20 @@ class Speedofme(Provider):
     with the BrowserInterface, allowing for flexibility in browser
     choice.
 
-    Attributes:     browser (BrowserInterface): An instance of a browser
-    that implements the BrowserInterface, used to load pages and
-    interact with web elements.
+    Attributes:
+        browser (BrowserInterface): An instance of a browser that implements
+            the BrowserInterface, used to load pages and interact with web
+            elements.
 
     """
 
     def __init__(self, browser: BrowserInterface):
         """Initializes the Speedofme provider with the specified browser.
 
-        Parameters:     browser (BrowserInterface): An instance of a
-        browser that implements the BrowserInterface. This browser will
-        be used to navigate the Speedof.me site and perform tests.
+        Parameters:
+            browser: An instance of a browser that implements the
+                BrowserInterface. This browser will be used to navigate the
+                Speedof.me site and perform tests.
 
         """
         super().__init__(browser)
@@ -58,13 +60,13 @@ class Speedofme(Provider):
         except NoSuchElementException as e:
             print("element not found: ", e)
 
-    def run(self, filename="speedofme-results.png"):
+    def run(self, filename: str = "speedofme-results.png"):
         """Initiates the speed test on Speedof.me and captures the results. The
         test results are saved as a screenshot in the specified file.
 
-        Parameters:     filename (str): The name of the file to save the
-        screenshot of the test results.                     Defaults to
-        'speedofme-results.png'.
+        Parameters:
+            filename: The name of the file to save the screenshot of the test
+                results. Defaults to 'speedofme-results.png'.
 
         This method handles the full lifecycle of the speed test,
         including setup, starting the test, waiting for the test to

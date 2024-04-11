@@ -11,17 +11,19 @@ class MSEdgeBrowser:
     Edge browser using Selenium WebDriver. It adheres to the BrowserInterface
     to ensure compatibility with the Speed Sleuth's browser handling.
 
-    Attributes:     binary_path (str): The file path to the Microsoft
-    Edge browser executable.
+    Attributes:
+        binary_path (str): The file path to the Microsoft Edge browser
+            executable.
 
     """
 
-    def __init__(self, binary_path):
+    def __init__(self, binary_path=None):
         """Initializes a new instance of the MSEdgeBrowser with the specified
         binary path for the Edge browser.
 
-        Parameters:     binary_path (str): The file path to the
-        Microsoft Edge browser executable.
+        Parameters:
+            binary_path (str, optional): The file path to the Microsoft Edge
+                browser executable.
 
         """
 
@@ -38,8 +40,9 @@ class MSEdgeBrowser:
         'complete' before returning, ensuring that the page is fully
         loaded.
 
-        Returns:     WebDriver: An instance of Selenium WebDriver
-        configured for Microsoft Edge.
+        Returns:
+            WebDriver: An instance of Selenium WebDriver configured for
+                Microsoft Edge.
 
         """
 

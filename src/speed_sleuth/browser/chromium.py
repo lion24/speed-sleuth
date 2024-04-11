@@ -33,9 +33,13 @@ class ChromiumBrower:
     Chromium browser instance, including setting the binary location,
     window size, and disabling GPU acceleration.
 
-    Methods:     load_driver(): Creates and returns a configured
-    Selenium WebDriver instance                    for the Chromium
-    browser.
+    Attributes:
+        binary_path (str, optional): An optional location of the webdriver
+            location. Default to None.
+
+    Methods:
+        load_driver(): Creates and returns a configured Selenium WebDriver
+            instance for the Chromium browser.
 
     """
 
@@ -64,8 +68,15 @@ class ChromiumBrower:
             Chromium browser.
 
         Example:
+            Initiate a chromium browser ready for testing:
+            ```pycon
+            >>> from speed_sleuth.browser.chromium import ChromiumBrower
             >>> chromium_browser = ChromiumBrower()
             >>> driver = chromium_browser.load_driver()
+            >>> driver # doctest: +ELLIPSIS
+            <selenium.webdriver.chrome.webdriver.WebDriver (...)>
+            >>>
+            ```
 
         """
         chrome_service = service.ChromiumService()
@@ -78,3 +89,9 @@ class ChromiumBrower:
         return webdriver.Chrome(service=chrome_service, options=chrome_options)
         # As using selenium api > 2.x, this call should block until
         # readyState is hit.
+
+
+if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()

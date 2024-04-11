@@ -33,10 +33,22 @@ class Provider(ABC):
         except Exception as e:
             print("browser.load_driver() exception: ", e)
 
-    def wait_to_be_visible(self, element: WebElement, timeout=90):
-        """Method that wait until an element is present and clickable in the
-        DOM."""
-        print("wait_to_be_visible...")
+    def wait_to_be_visible(
+        self, element: WebElement, timeout: int = 90
+    ) -> bool:
+        """Waits for the given element to become visible and interactable on
+        the page.
+
+        Args:
+            element: The WebElement object representing the
+                element to wait for.
+            timeout: Maximum time to wait for the element to
+                become visible, in seconds. Defaults to 90.
+
+        Returns:
+            bool: True if the element becomes visible within the specified
+                timeout, False otherwise.
+        """
         errors = [NoSuchElementException, ElementNotInteractableException]
         try:
             wait = WebDriverWait(
@@ -56,11 +68,23 @@ class Provider(ABC):
             print("wait_for_clickable expection occurred: ", e)
             return False
 
-    def wait_for_element(self, locator, timeout=120) -> WebElement:
+    def wait_for_element(
+        self, locator: tuple[str, str], timeout: int = 120
+    ) -> WebElement:
         """Wait for an element to be visible and returns it If not found,
         NoSuchElementException is raised.
 
-        :param locator: A tuple of (By, locator) to find the element.
+        Args:
+            locator: A tuple of (By, locator) to find the element.
+            timeout: The amount for time to wait for the element pointed
+                by the locator to be visible. Default to 120.
+
+        Returns:
+            WebElement: The element identified by locator
+
+        Raises:
+            NoSuchElementException: raised when no element was found under the
+                specified locator.
 
         """
         try:
@@ -73,12 +97,23 @@ class Provider(ABC):
                 f"Element {locator} was not visible after {timeout} second"
             ) from e
 
-    def wait_for_button_clickable(self, locator, timeout=120) -> WebElement:
+    def wait_for_button_clickable(
+        self, locator: tuple[str, str], timeout: int = 120
+    ) -> WebElement:
         """Wait for a button to be visible and clickable If not found,
         NoSuchElementException is raised.
 
-        :param locator: A tuple of (By, locator) to find the element.
-            Returns: WebElement: The button identified by locator
+        Args:
+            locator: A tuple of (By, locator) to find the element.
+            timeout: The amount for time to wait for the element pointed
+                by the locator to be visible. Default to 120.
+
+        Returns:
+            WebElement: The button identified by locator
+
+        Raises:
+            NoSuchElementException: raised when no element was found under the
+                specified locator.
 
         """
         try:

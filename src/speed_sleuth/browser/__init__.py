@@ -37,11 +37,13 @@ class BrowserInterface(metaclass=abc.ABCMeta):
         include setting browser options, capabilities, and webdriver
         paths.
 
-        Returns:     WebDriver: An instance of a Selenium WebDriver
-        ready for browser automation tasks.
+        Returns:
+            WebDriver: An instance of a Selenium WebDriver ready for browser
+                automation tasks.
 
-        Raises:     NotImplementedError: If the subclass does not
-        implement this method.
+        Raises:
+            NotImplementedError: If the subclass does not   implement this
+                method.
 
         """
         raise NotImplementedError
@@ -63,7 +65,7 @@ class BrowserFactory:
     """
 
     @staticmethod
-    def get_browser():
+    def get_browser() -> BrowserInterface:
         """Retrieves an instance of a browser object based on the user's
         default browser.
 
@@ -72,11 +74,13 @@ class BrowserFactory:
         Depending on the detected browser, it then dynamically imports
         and returns an instance of the corresponding browser class.
 
-        Returns:     An instance of a browser object corresponding to
-        the user's default browser.
+        Returns:
+            browser: An instance of a browser object corresponding to
+                the user's default browser and conforming to BrowserInterface.
 
-        Raises:     ValueError: If the detected default browser is not
-        supported by the factory.
+        Raises:
+            ValueError: If the detected default browser is not supported by the
+                factory.
 
         """
         default_browser, path = BrowserFactory.detect_default_browser()
@@ -101,11 +105,13 @@ class BrowserFactory:
         default browser and its path. For Windows, it accesses the
         system registry.
 
-        Returns:     tuple: A tuple containing the identifier of the
-        default browser and its executable path.
+        Returns:
+            tuple: A tuple containing the identifier of the default browser and
+                its executable path.
 
-        Raises:     OsNotFoundException: If the operating system is not
-        recognized or supported by this method.
+        Raises:
+            OsNotFoundException: If the operating system is not recognized or
+                supported by this method.
 
         """
         browser = "chrome"
