@@ -58,7 +58,7 @@ class Speedtest(Provider):
         """Provides a string representation of the Speedtest instance.
 
         Returns:
-            str: A simple string reprensentation for this provider.
+            str: A simple string representation for this provider.
 
         """
         return "speedtest"
@@ -103,10 +103,10 @@ class Speedtest(Provider):
                 (By.CSS_SELECTOR, "a.notification-dismiss")
             )
             if dismiss_btn:
-                print("dismissing notifcation...")
+                print("dismissing notification...")
                 dismiss_btn.click()
         except NoSuchElementException:
-            pass  # Silently ignore this exception which can occured.
+            pass  # Silently ignore this exception which can occur.
 
     def run(self, filename: str = "speedtest-result.png"):
         """Executes the speed test on speedtest.net and captures a screenshot
@@ -146,7 +146,7 @@ class Speedtest(Provider):
             print("Did not find element: ", e)
             code = -1
         except Exception as e:
-            print(f"An error occured: {e}")
+            print(f"An error occurred: {e}")
             traceback.print_exc()
             code = -1
         finally:

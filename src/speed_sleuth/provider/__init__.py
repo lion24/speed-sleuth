@@ -65,7 +65,7 @@ class Provider(ABC):
             print("wait_for_clickable timed out waiting: ", e)
             return False
         except Exception as e:
-            print("wait_for_clickable expection occurred: ", e)
+            print("wait_for_clickable exception occurred: ", e)
             return False
 
     def wait_for_element(
