@@ -9,6 +9,8 @@ from unittest.mock import MagicMock, patch
 import pytest
 
 from speed_sleuth.browser import BrowserFactory
+from speed_sleuth.browser.chromium import ChromiumBrower
+from speed_sleuth.browser.ms_edge import MSEdgeBrowser
 
 
 class TestBrowser:
@@ -40,3 +42,32 @@ class TestBrowser:
                     name, path = BrowserFactory.detect_default_browser()
                     assert name == browser_name
                     assert path is None
+
+    @pytest.mark.parametrize(
+        "browser_name, browser_instance, expected_exception",
+        [
+            ("google-chrome", ChromiumBrower, None),
+            ("MSEdgeHTM", MSEdgeBrowser, None),
+            (
+                "UnexistantBrowser",
+                None,
+                ValueError("No supported browser found for UnexistantBrowser"),
+            ),
+        ],
+    )
+    def test_get_browser(
+        self, browser_name, browser_instance, expected_exception
+    ):
+        with patch(
+            "speed_sleuth.browser.BrowserFactory.detect_default_browser"
+        ) as default_browser_mock:
+            default_browser_mock.return_value = (browser_name, None)
+
+            if expected_exception:
+                with pytest.raises(ValueError) as exc_info:
+                    instance = BrowserFactory.get_browser()
+
+                assert str(exc_info.value) == str(expected_exception)
+            else:
+                instance = BrowserFactory.get_browser()
+                assert isinstance(instance, browser_instance)

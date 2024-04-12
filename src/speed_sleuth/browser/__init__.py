@@ -119,10 +119,10 @@ class BrowserFactory:
 
         """
         # selenium is able to cope without.
-        osPlatform = platform.system()
+        osPlatform = platform.system().lower()
 
         match osPlatform:
-            case "Windows":  # TODO FIX THIS MESS and use webbrowser
+            case "windows":  # TODO FIX THIS MESS and use webbrowser
                 browser = ""
                 path = None
                 try:
@@ -156,7 +156,7 @@ class BrowserFactory:
                         e,
                     )
 
-            case "Linux":
+            case "linux":
                 try:
                     import gc
                     import webbrowser
