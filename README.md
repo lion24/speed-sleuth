@@ -34,6 +34,39 @@ hatch -e default shell
 python -m pip install --editable .
 ```
 
+## Testing
+
+I started to write a bunch of unit tests because running the full test suite
+using a real browser doing a real test is quite long and painful.
+The goal is the achieve the best coverage using unit tests.
+
+If for any reason, one of the provider decide to change the design or the css
+class to activate the test, we are fucked.
+
+That's why this is still important to run the integration tests against the real
+providers on a regular basis. For now this is not the case. The plan is to have
+a test that will be activate each night with a cron that will run the full integration
+test suite.
+
+### Some examples
+
+Launch unit tests:
+```sh
+hatch run test:run -- -k unit
+```
+
+Launch the integration tests:
+```sh
+hatch run test:run -- -k integration
+```
+
+If you want to run the full test suite:
+```sh
+hatch run test:run
+```
+> Note: be aware that running the full test suite requires a supported browser installed
+on your machine.
+
 ## TODO
 
  - Add support for multiple browsers (firefox, opera, safari?).
