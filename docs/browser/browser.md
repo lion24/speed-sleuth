@@ -1,3 +1,3 @@
-# Documentation for the brower module
+# Documentation for the browser module
 
 ::: speed_sleuth.browser

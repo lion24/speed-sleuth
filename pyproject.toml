@@ -64,6 +64,7 @@ dependencies = [
     "flake8",
     "black",
     "isort",
+    "codespell",
 ]
 
 [tool.black]
@@ -73,16 +74,22 @@ line-length = 79
 profile = "black"
 line_length = 79
 
+[tool.codespell]
+skip = './site'
+count = ''
+quiet-level = 3
 
 [tool.hatch.envs.style.scripts]
 check = [
     "flake8 .",
     "black -l 79 --check --diff .",
     "isort --check-only --diff .",
+    "codespell",
 ]
 fmt = [
     "isort .",
     "black -l 79 .",
+    "codespell -w",
     "check",
 ]
 

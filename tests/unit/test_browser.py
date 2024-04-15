@@ -9,7 +9,7 @@ from unittest.mock import MagicMock, patch
 import pytest
 
 from speed_sleuth.browser import BrowserFactory
-from speed_sleuth.browser.chromium import ChromiumBrower
+from speed_sleuth.browser.chromium import ChromiumBrowser
 from speed_sleuth.browser.ms_edge import MSEdgeBrowser
 
 
@@ -46,7 +46,7 @@ class TestBrowser:
     @pytest.mark.parametrize(
         "browser_name, browser_instance, expected_exception",
         [
-            ("google-chrome", ChromiumBrower, None),
+            ("google-chrome", ChromiumBrowser, None),
             ("MSEdgeHTM", MSEdgeBrowser, None),
             (
                 "UnexistantBrowser",

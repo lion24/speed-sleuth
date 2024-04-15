@@ -20,7 +20,7 @@ from speed_sleuth.browser import BrowserInterface
 
 
 @BrowserInterface.register
-class ChromiumBrower:
+class ChromiumBrowser:
     """ChromiumBrower implements the BrowserInterface to provide a method for
     loading and configuring a WebDriver instance specifically for Chromium
     browsers.

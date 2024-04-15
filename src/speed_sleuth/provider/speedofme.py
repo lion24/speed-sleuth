@@ -91,7 +91,7 @@ class Speedofme(Provider):
             if results:
                 results.screenshot(filename)
         except Exception as exp:
-            print(f"An error occured: {exp}")
+            print(f"An error occurred: {exp}")
             traceback.print_exc()
             code = -1
         finally:

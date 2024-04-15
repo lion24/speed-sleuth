@@ -91,9 +91,9 @@ class BrowserFactory:
 
                 return MSEdgeBrowser(path)
             case "google-chrome":
-                from speed_sleuth.browser.chromium import ChromiumBrower
+                from speed_sleuth.browser.chromium import ChromiumBrowser
 
-                return ChromiumBrower(path)
+                return ChromiumBrowser(path)
             case _:
                 raise ValueError(
                     f"No supported browser found for {default_browser}"

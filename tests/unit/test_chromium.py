@@ -2,7 +2,7 @@ import unittest
 import unittest.mock
 from unittest.mock import MagicMock, patch
 
-from speed_sleuth.browser.chromium import ChromiumBrower
+from speed_sleuth.browser.chromium import ChromiumBrowser
 
 
 class TestChromiumBrowser(unittest.TestCase):
@@ -19,7 +19,7 @@ class TestChromiumBrowser(unittest.TestCase):
         service_instance = MagicMock()
         mock_service.return_value = service_instance
 
-        browser = ChromiumBrower()
+        browser = ChromiumBrowser()
         browser.load_driver()
 
         mock_service.assert_called_once()
@@ -35,7 +35,7 @@ class TestChromiumBrowser(unittest.TestCase):
         browser = None
 
         # Assert that binary path is correct when initializing
-        browser = ChromiumBrower("/mock/browser/binary/path")
+        browser = ChromiumBrowser("/mock/browser/binary/path")
         browser.load_driver()
 
         self.assertEqual("/mock/browser/binary/path", browser.binary_path)
