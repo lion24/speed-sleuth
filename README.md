@@ -113,9 +113,24 @@ hatch run test:run
 
 ## TODO
 
-- Add support for multiple browsers (see compatibility matrix)
-- Instead of taking pictures of the results, parse the DOM to retrieve results.
+ - Add support for multiple browsers (see compatibility matrix).
+ - Instead of taking pictures of the results, parse the DOM to retrieve results.
+ - Achieve the best coverage possible.
 
-## Contribution
+## Contributing
 
-I would be honored to receive some PR and I will attach a high attention on reviewing them. You're welcome! :-)
+Hello fellow contributors!
+
+First off, thank you for considering contributing to my awesome little project :-) Seeing new faces and fresh ideas is always appreciated. However, just like any well-maintained project, I've got a few guidelines to keep everything neat and tidy:
+
+ - **No tests, no entry**: I love my tests just like a chef love its spices. So, if you're sending in a PR without tests, it's like serving a bland dish. I'll have to kindly ask you to spice it up or it will go straight to the reject pile. You can get some inspiration from the `tests/unit` and `tests/integration` folders.
+
+ - **Code, meet Documentation. Documentation, meet Code**: Your code should come with its own documentation.
+
+ - **Expertise required**: Just as I imagine you wouldn't trust your grandmother to perform heart surgery (no offense, Grandma), I would prefer that only experts edit the documentation. So unless proven, leave it to the pros.
+
+ - **Typos**: The bane of every programmers' existence. While I appreciate your sense of observation, I've got automated typo correction software that's faster than you and me. So unless you have discovered a typo that reaches your sensibilities and causes havoc, I'll have to close those PRs faster than you can say "spellcheck."
+
+ - **Keep it "simple"**: If your PR looks "complex", is a big diff, changing a lot of stuff, it won't be review or merged. Consider breaking it into smaller PRs.
+
+Don't go away! These guidelines aren't meant to scare you off – quite the opposite! I'm convinced this project can be very useful, so let's work together and make this project a nice tool for automation and network engineers (with documentation, of course).
