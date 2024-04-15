@@ -23,7 +23,7 @@ from selenium.common.exceptions import (
 )
 from selenium.webdriver.common.by import By
 
-from speed_sleuth.browser import BrowserInterface
+from speed_sleuth.driver import DriverInterface
 from speed_sleuth.provider import Provider
 
 
@@ -43,7 +43,7 @@ class Speedtest(Provider):
 
     """
 
-    def __init__(self, browser: BrowserInterface):
+    def __init__(self, driver: DriverInterface):
         """Initializes the Speedtest provider with a browser instance.
 
         Parameters:
@@ -51,7 +51,7 @@ class Speedtest(Provider):
                 conducted on speedtest.net.
 
         """
-        super().__init__(browser)
+        super().__init__(driver)
         self.driver.get("https://www.speedtest.net/")
 
     def __str__(self) -> str:
@@ -72,7 +72,7 @@ class Speedtest(Provider):
 
         """
         try:
-            eula_reject_btn = self.wait_for_element(
+            eula_reject_btn = self.driver.wait_for_element(
                 (By.CSS_SELECTOR, "button#onetrust-reject-all-handler"),
                 timeout=5,
             )
@@ -81,7 +81,7 @@ class Speedtest(Provider):
                 eula_reject_btn.click()
         except NoSuchElementException:
             # onetrust-accept-btn-handler
-            eula_accept_btn = self.wait_for_element(
+            eula_accept_btn = self.driver.wait_for_element(
                 (By.CSS_SELECTOR, "button#onetrust-accept-btn-handler"),
                 timeout=5,
             )
@@ -99,7 +99,7 @@ class Speedtest(Provider):
 
         """
         try:
-            dismiss_btn = self.wait_for_element(
+            dismiss_btn = self.driver.wait_for_element(
                 (By.CSS_SELECTOR, "a.notification-dismiss")
             )
             if dismiss_btn:
@@ -125,13 +125,13 @@ class Speedtest(Provider):
         try:
             self.setup()
             self.dismiss_notification()
-            start_test_btn = self.wait_for_button_clickable(
+            start_test_btn = self.driver.wait_for_button_clickable(
                 (By.CSS_SELECTOR, "#container div.start-button > a"), timeout=5
             )
             start_test_btn.click()
             print("[+] running speedtest.net, please wait")
             # Block until the result is displayed on screen.
-            results = self.wait_for_element(
+            results = self.driver.wait_for_element(
                 (
                     By.CSS_SELECTOR,
                     "div.result-container-speed.result-container-speed-active",
@@ -150,7 +150,7 @@ class Speedtest(Provider):
             traceback.print_exc()
             code = -1
         finally:
-            self.cleanup(code)
+            self.driver.cleanup(code)
 
     def parse_results(self):
         """Parses the captured results of the speed test.
