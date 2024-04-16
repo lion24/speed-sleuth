@@ -124,22 +124,21 @@ class BrowserFactory:
                         HKEY_CLASSES_ROOT,
                         HKEY_CURRENT_USER,
                         OpenKey,
+                        QueryValueEx,
                     )
 
                     reg_key = OpenKey(
                         HKEY_CURRENT_USER,
                         r"SOFTWARE\Microsoft\Windows\Shell\Associations\UrlAssociations\http\UserChoice",  # noqa: E501
                     )
-                    browser = reg_key.QueryValueEx(reg_key, "ProgId")[0]
-                    reg_key.close()
+                    browser = QueryValueEx(reg_key, "ProgId")[0]
 
                     reg_key = OpenKey(
                         HKEY_CLASSES_ROOT,
                         r"{}\shell\open\command".format(browser),
                     )
-                    browser_path_tuple = reg_key.QueryValueEx(reg_key, None)
+                    browser_path_tuple = QueryValueEx(reg_key, None)
                     path = browser_path_tuple[0].split('"')[1]
-                    reg_key.close()
 
                     return browser, path
                 except ImportError:
