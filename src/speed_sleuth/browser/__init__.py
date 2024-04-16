@@ -19,10 +19,8 @@ class BrowserInterface(metaclass=abc.ABCMeta):
 
     @classmethod
     def __subclasshook__(cls, subclass):
-        return (
-            hasattr(subclass, "load_driver")
-            and callable(subclass.load_driver)
-            or NotImplemented
+        return hasattr(subclass, "load_driver") and callable(
+            subclass.load_driver
         )
 
     @classmethod
@@ -41,12 +39,8 @@ class BrowserInterface(metaclass=abc.ABCMeta):
             WebDriver: An instance of a Selenium WebDriver ready for browser
                 automation tasks.
 
-        Raises:
-            NotImplementedError: If the subclass does not   implement this
-                method.
-
         """
-        raise NotImplementedError
+        pass
 
 
 class OsNotFoundException(Exception):
