@@ -3,7 +3,7 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "speed-sleuth"
+name = "speed_sleuth"
 dynamic = ["version"]
 description = "Automated speedtest analyser using selenium"
 readme = "README.md"
