@@ -38,8 +38,8 @@ class Speedtest(Provider):
     results as screenshots.
 
     Attributes:
-        browser: A browser instance that adheres to the BrowserInterface, used
-            for web interactions.
+        driver: A driver instance that adheres to the DriverInterface, used
+            for web interactions with the browser.
 
     """
 
@@ -47,8 +47,8 @@ class Speedtest(Provider):
         """Initializes the Speedtest provider with a browser instance.
 
         Parameters:
-            browser: The browser instance through which the speed test will be
-                conducted on speedtest.net.
+            driver: A driver instance that adheres to the DriverInterface, used
+                for web interactions with the browser.
 
         """
         super().__init__(driver)

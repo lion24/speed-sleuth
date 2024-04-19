@@ -8,7 +8,7 @@ import traceback
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.common.by import By
 
-from speed_sleuth.browser import BrowserInterface
+from speed_sleuth.driver import DriverInterface
 from speed_sleuth.provider import Provider
 
 
@@ -23,22 +23,20 @@ class Speedofme(Provider):
     choice.
 
     Attributes:
-        browser (BrowserInterface): An instance of a browser that implements
-            the BrowserInterface, used to load pages and interact with web
-            elements.
+        driver: A driver instance that adheres to the DriverInterface, used
+            for web interactions with the browser.
 
     """
 
-    def __init__(self, browser: BrowserInterface):
+    def __init__(self, driver: DriverInterface):
         """Initializes the Speedofme provider with the specified browser.
 
         Parameters:
-            browser: An instance of a browser that implements the
-                BrowserInterface. This browser will be used to navigate the
-                Speedof.me site and perform tests.
+            driver: A driver instance that adheres to the DriverInterface, used
+                for web interactions with the browser.
 
         """
-        super().__init__(browser)
+        super().__init__(driver)
         self.driver.get("https://speedof.me/")
 
     def setup(self):
@@ -53,7 +51,7 @@ class Speedofme(Provider):
             eula_btn = self.driver.find_element(
                 By.CSS_SELECTOR, "#cc-accept-btn > a"
             )
-            self.wait_to_be_visible(eula_btn)
+            self.driver.wait_to_be_visible(eula_btn)
 
             print("Found eula accept btn")
             eula_btn.click()
@@ -83,7 +81,7 @@ class Speedofme(Provider):
             retry_btn = self.driver.find_element(
                 By.CSS_SELECTOR, "div.result-retry.result-color"
             )
-            self.wait_to_be_visible(retry_btn)
+            self.driver.wait_to_be_visible(retry_btn)
             print("[+] done, taking snapshot of the website results")
             results = self.driver.find_element(
                 By.CSS_SELECTOR, "#d3_pane > svg.download_svg"
@@ -95,7 +93,7 @@ class Speedofme(Provider):
             traceback.print_exc()
             code = -1
         finally:
-            self.cleanup(code)
+            self.driver.cleanup(code)
 
     def parse_results(self):
         """Parses the results of the speed test. This method is intended to be
