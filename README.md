@@ -4,11 +4,11 @@ Automated speedtest analyser using selenium and a compatible browser.
 
 ## Compatibility matrix
 
-| Operating System | ![Chrome](https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png) | ![Firefox](https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png) | ![IE](https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_48x48.png) | ![Safari](https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_48x48.png) | ![Opera](https://raw.githubusercontent.com/alrra/browser-logos/master/src/opera/opera_48x48.png)
-|------------------|--------|---------|--------|------|------|
-| Windows          | :interrobang:    | :grey_question:     | :white_check_mark:     | N/A  | :grey_question:  |
-| macOS            | :interrobang:    | :grey_question:     | :x:    | :grey_question:  | :grey_question:  |
-| Linux            | :white_check_mark:    | :grey_question:     | :x:     | N/A   | :grey_question:  |
+| Operating System | ![Chrome](https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png) | ![Firefox](https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png) | ![IE](https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_48x48.png) | ![Safari](https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_48x48.png) | ![Opera](https://raw.githubusercontent.com/alrra/browser-logos/master/src/opera/opera_48x48.png) |
+| ---------------- | --------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------ |
+| Windows          | :interrobang:                                                                                       | :grey_question:                                                                                        | :white_check_mark:                                                                          | N/A                                                                                                 | :grey_question:                                                                                  |
+| macOS            | :interrobang:                                                                                       | :grey_question:                                                                                        | :x:                                                                                         | :grey_question:                                                                                     | :grey_question:                                                                                  |
+| Linux            | :white_check_mark:                                                                                  | :grey_question:                                                                                        | :x:                                                                                         | N/A                                                                                                 | :grey_question:                                                                                  |
 
 - :white_check_mark: - tested, works fine
 - :warning: - not for production use
@@ -18,13 +18,13 @@ Automated speedtest analyser using selenium and a compatible browser.
 
 ## Supported provider
 
-| Provider | Supported ? |
-|------------------|--------|
-| [Speedtest.net](https://speedtest.net)          | :white_check_mark:    |
-| [Speedof.me](https://speedof.me/)          | :white_check_mark:    |
-| [fast.com](https://fast.com/)          | :grey_question:    |
-| [Google Fiber Speed Test](https://fiber.google.com/speedtest/)          | :grey_question:    |
-| [TestMy.net](https://testmy.net/)          | :grey_question:    |
+| Provider                                                       | Supported ?        |
+| -------------------------------------------------------------- | ------------------ |
+| [Speedtest.net](https://speedtest.net)                         | :white_check_mark: |
+| [Speedof.me](https://speedof.me/)                              | :white_check_mark: |
+| [fast.com](https://fast.com/)                                  | :grey_question:    |
+| [Google Fiber Speed Test](https://fiber.google.com/speedtest/) | :grey_question:    |
+| [TestMy.net](https://testmy.net/)                              | :grey_question:    |
 
 - :white_check_mark: - tested, works fine
 - :grey_question: - will work in the future (help out if you can)
@@ -34,8 +34,8 @@ Feel free to add new ones.
 
 ## Requirements
 
- - Python3 and `hatch` https://hatch.pypa.io/latest/
- - A browser supported by the selenium framework (currently only Chromium and Edge implemented)
+- Python3 and `hatch` https://hatch.pypa.io/latest/
+- A browser supported by the selenium framework (currently only Chromium and Edge implemented)
 
 ## How to run
 
@@ -80,26 +80,30 @@ test suite.
 ### Some examples
 
 Launch unit tests:
+
 ```sh
 hatch run test:run -- -k unit
 ```
 
 Launch the integration tests:
+
 ```sh
 hatch run test:run -- -k integration
 ```
 
 If you want to run the full test suite:
+
 ```sh
 hatch run test:run
 ```
+
 > Note: be aware that running the full test suite requires a supported browser installed
-on your machine.
+> on your machine.
 
 ## TODO
 
- - Add support for multiple browsers (see compatibility matrix)
- - Instead of taking pictures of the results, parse the DOM to retrieve results.
+- Add support for multiple browsers (see compatibility matrix)
+- Instead of taking pictures of the results, parse the DOM to retrieve results.
 
 ## Contribution
 
