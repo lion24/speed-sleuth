@@ -14,20 +14,18 @@ class MSEdgeBrowser:
     Attributes:
         binary_path (str): The file path to the Microsoft Edge browser
             executable.
+        headless (bool, optional): Run in headless mode, i.e., without a UI
+                or display server dependencies
+
+    Methods:
+        load_driver(): Creates and returns a configured Selenium WebDriver
+            instance for the Chromium browser.
 
     """
 
-    def __init__(self, binary_path=None):
-        """Initializes a new instance of the MSEdgeBrowser with the specified
-        binary path for the Edge browser.
-
-        Parameters:
-            binary_path (str, optional): The file path to the Microsoft Edge
-                browser executable.
-
-        """
-
+    def __init__(self, binary_path=None, headless=False):
         self.binary_path = binary_path
+        self.headless = headless
 
     def load_driver(self) -> WebDriver:
         """Initializes and returns a Selenium WebDriver for Microsoft Edge with
@@ -51,6 +49,8 @@ class MSEdgeBrowser:
 
         if self.binary_path:
             edge_options.binary_location = self.binary_path
+        if self.headless:
+            edge_options.add_argument("--headless")
         edge_options.add_argument("--window-size=1400x900")
         edge_options.add_argument("--disable-gpu")
         edge_options.add_argument("--lang=en_US")
