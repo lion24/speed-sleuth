@@ -34,6 +34,8 @@ class ChromiumBrowser:
     Attributes:
         binary_path (str, optional): An optional location of the webdriver
             location. Default to None.
+        headless (bool, optional): Run in headless mode, i.e., without a UI
+                or display server dependencies
 
     Methods:
         load_driver(): Creates and returns a configured Selenium WebDriver
@@ -41,8 +43,9 @@ class ChromiumBrowser:
 
     """
 
-    def __init__(self, binary_path=None):
+    def __init__(self, binary_path=None, headless=False):
         self.binary_path = binary_path
+        self.headless = headless
 
     def load_driver(self) -> WebDriver:
         """Initializes and returns a Selenium WebDriver instance configured for
@@ -77,7 +80,8 @@ class ChromiumBrowser:
         chrome_options = options.ChromiumOptions()
         if self.binary_path:
             chrome_options.binary_location = self.binary_path
-        # options.add_argument('--headless')
+        if self.headless:
+            chrome_options.add_argument("--headless")
         chrome_options.add_argument("--window-size=1400x900")
         chrome_options.add_argument("--disable-gpu")
         chrome_options.add_argument("--lang=en_US")
