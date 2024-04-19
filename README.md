@@ -1,7 +1,36 @@
-Speed Sleuth 🕵️ [![Tests](https://github.com/lion24/speed-sleuth/actions/workflows/test.yml/badge.svg?branch=main)](https://github.com/lion24/speed-sleuth) [![codecov](https://codecov.io/gh/lion24/speed-sleuth/graph/badge.svg?token=A4VHEY9KTT)](https://codecov.io/gh/lion24/speed-sleuth)
-![GH Page deploy](https://github.com/lion24/speed-sleuth/actions/workflows/docs.yml/badge.svg)
-====
-Automated speedtest analyser using chrome headless feature
+# Speed Sleuth 🕵️ [![Tests](https://github.com/lion24/speed-sleuth/actions/workflows/test.yml/badge.svg?branch=main)](https://github.com/lion24/speed-sleuth) [![codecov](https://codecov.io/gh/lion24/speed-sleuth/graph/badge.svg?token=A4VHEY9KTT)](https://codecov.io/gh/lion24/speed-sleuth) ![GH Page deploy](https://github.com/lion24/speed-sleuth/actions/workflows/docs.yml/badge.svg)
+
+Automated speedtest analyser using selenium and a compatible browser.
+
+## Compatibility matrix
+
+| Operating System | ![Chrome](https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png) | ![Firefox](https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png) | ![IE](https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_48x48.png) | ![Safari](https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_48x48.png) | ![Opera](https://raw.githubusercontent.com/alrra/browser-logos/master/src/opera/opera_48x48.png)
+|------------------|--------|---------|--------|------|------|
+| Windows          | :interrobang:    | :grey_question:     | :white_check_mark:     | N/A  | :grey_question:  |
+| macOS            | :interrobang:    | :grey_question:     | :x:    | :grey_question:  | :grey_question:  |
+| Linux            | :white_check_mark:    | :grey_question:     | :x:     | N/A   | :grey_question:  |
+
+- :white_check_mark: - tested, works fine
+- :warning: - not for production use
+- :grey_question: - will work in the future (help out if you can)
+- :interrobang: - maybe works, not tested
+- :x: no support planned
+
+## Supported provider
+
+| Provider | Supported ? |
+|------------------|--------|
+| [Speedtest.net](https://speedtest.net)          | :white_check_mark:    |
+| [Speedof.me](https://speedof.me/)          | :white_check_mark:    |
+| [fast.com](https://fast.com/)          | :grey_question:    |
+| [Google Fiber Speed Test](https://fiber.google.com/speedtest/)          | :grey_question:    |
+| [TestMy.net](https://testmy.net/)          | :grey_question:    |
+
+- :white_check_mark: - tested, works fine
+- :grey_question: - will work in the future (help out if you can)
+
+Focusing here on the top 5 most used providers. But other might be integrated.
+Feel free to add new ones.
 
 ## Requirements
 
@@ -69,9 +98,8 @@ on your machine.
 
 ## TODO
 
- - Add support for multiple browsers (firefox, opera, safari?).
+ - Add support for multiple browsers (see compatibility matrix)
  - Instead of taking pictures of the results, parse the DOM to retrieve results.
- - ~Add continuous integration support (travis)~ done, write unit tests and extend coverage.
 
 ## Contribution
 
