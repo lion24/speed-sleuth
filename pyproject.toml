@@ -15,6 +15,7 @@ maintainers = [
     {name = "Lionel Hubaut", email = "me@nullbyte.be"}
 ]
 dependencies = [
+    "click>=8.1.7",
     "selenium==4.19.0",
 ]
 license = { file = "LICENSE.md" }
@@ -37,6 +38,9 @@ classifiers = [
 [project.urls]
 Repository = "https://github.com/lion24/speed-sleuth.git"
 
+[project.scripts]
+speed-sleuth = "speed_sleuth.cli:main"
+
 [tool.hatch.version]
 path = "src/speed_sleuth/__init__.py"
 
@@ -53,9 +57,6 @@ exclude = [
 
 [tool.hatch.envs.default]
 python = "3.10"
-
-[tool.hatch.envs.default.scripts]
-main = "python main.py {args}"
 
 [tool.hatch.envs.style]
 detached = true
@@ -102,9 +103,36 @@ dependencies = [
 ]
 
 [tool.hatch.envs.test.scripts]
-run-coverage = "pytest -rA --cov-config=pyproject.toml --cov=speed_sleuth --cov=tests --cov-report xml {args}"
-run = "run-coverage --no-cov"
+run = "pytest -rA {args:tests}"
 dry-run = "run --collect-only"
+run-coverage = "coverage run -m pytest -rA {args:tests}"
+cov-report = [
+  "coverage combine",
+  "coverage report",
+]
+cov = [
+  "run-coverage",
+  "cov-report",
+]
+
+[tool.coverage.run]
+source_pkgs = ["speed_sleuth", "tests"]
+branch = true
+parallel = true
+omit = [
+  "src/speed_sleuth/cli/*",
+]
+
+[tool.coverage.paths]
+speed_sleuth = ["src/speed_sleuth", "*/speed-sleuth/src/speed_sleuth"]
+tests = ["tests"]
+
+[tool.coverage.report]
+exclude_lines = [
+  "no cov",
+  "if __name__ == .__main__.:",
+  "if TYPE_CHECKING:",
+]
 
 [tool.hatch.envs.docs]
 dependencies = [

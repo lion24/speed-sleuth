@@ -39,19 +39,30 @@ Feel free to add new ones.
 
 ## How to run
 
-just type:
+You can test against different providers:
 
 ```sh
-hatch run main
+hatch env run speed-sleuth -- <providers ...>
 ```
 
-to run the tool and start testing your connection against multiple providers.
-For the moment, it's only support speedtest.net and speedof.me. Plan is to add some more.
-
-You can only test against a single provider, for example speedtest:
+To test against speedtest.net:
 
 ```sh
-hatch run main -p speedtest
+hatch env run speed-sleuth -- speedtest
+```
+
+To test against multiple providers, for example speedtest.net and speedof.me (one test at a time)
+
+```sh
+hatch env run speed-sleuth -- speedtest speedofme
+```
+
+If running with hatch it's better to escape hatch arguments from the program arguments using `--`.
+
+You can get help using:
+
+```sh
+hatch env run speed-sleuth -- --help
 ```
 
 ## Some notes
