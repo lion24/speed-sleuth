@@ -27,7 +27,8 @@ from speed_sleuth.driver import DriverInterface
 from speed_sleuth.provider import Provider
 
 
-class Speedtest(Provider):
+@Provider.register
+class Speedtest:
     """A provider class for conducting internet speed tests using the
     speedtest.net website.
 
