@@ -12,7 +12,8 @@ from speed_sleuth.driver import DriverInterface
 from speed_sleuth.provider import Provider
 
 
-class Speedofme(Provider):
+@Provider.register
+class Speedofme:
     """Represents the Speedof.me service for conducting internet speed tests.
     This class provides methods to interact with the Speedof.me website using a
     Selenium WebDriver, including accepting the end-user license agreement
@@ -36,8 +37,8 @@ class Speedofme(Provider):
                 for web interactions with the browser.
 
         """
-        super().__init__(driver)
-        self.driver.get("https://speedof.me/")
+        driver.get("https://speedof.me/")
+        self.driver = driver
 
     def setup(self):
         """Prepares the testing environment on the Speedof.me website.

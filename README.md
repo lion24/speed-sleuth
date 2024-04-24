@@ -22,7 +22,7 @@ Automated speedtest analyser using selenium and a compatible browser.
 | -------------------------------------------------------------- | ------------------ |
 | [Speedtest.net](https://speedtest.net)                         | :white_check_mark: |
 | [Speedof.me](https://speedof.me/)                              | :white_check_mark: |
-| [fast.com](https://fast.com/)                                  | :grey_question:    |
+| [fast.com](https://fast.com/)                                  | :white_check_mark: |
 | [Google Fiber Speed Test](https://fiber.google.com/speedtest/) | :grey_question:    |
 | [TestMy.net](https://testmy.net/)                              | :grey_question:    |
 

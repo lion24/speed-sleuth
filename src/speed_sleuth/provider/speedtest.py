@@ -27,7 +27,8 @@ from speed_sleuth.driver import DriverInterface
 from speed_sleuth.provider import Provider
 
 
-class Speedtest(Provider):
+@Provider.register
+class Speedtest:
     """A provider class for conducting internet speed tests using the
     speedtest.net website.
 
@@ -51,8 +52,8 @@ class Speedtest(Provider):
                 for web interactions with the browser.
 
         """
-        super().__init__(driver)
-        self.driver.get("https://www.speedtest.net/")
+        driver.get("https://www.speedtest.net/")
+        self.driver = driver
 
     def __str__(self) -> str:
         """Provides a string representation of the Speedtest instance.
