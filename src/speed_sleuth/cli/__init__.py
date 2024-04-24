@@ -3,10 +3,11 @@ import click
 
 from speed_sleuth.browser import BrowserFactory
 from speed_sleuth.driver.selenium import SeleniumDriver
+from speed_sleuth.provider.fast import *  # to import object into the global table.
 from speed_sleuth.provider.speedofme import *  # to import object into the global table.
 from speed_sleuth.provider.speedtest import *  # to import object into the global table.
 
-providers = ["speedtest", "speedofme"]
+providers = ["speedtest", "speedofme", "fast"]
 
 
 @click.command(help="speed_sleuth is a tool to conduct automated speedtest")

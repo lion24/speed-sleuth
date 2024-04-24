@@ -48,6 +48,10 @@ class DriverInterface(metaclass=abc.ABCMeta):
     ) -> Any:
         """Should return a pointer to a button element once this one is
         considered clickable
+
+        Raises:
+            NoSuchElementException: raised when no element was found under the
+                specified locator.
         """
         pass
 

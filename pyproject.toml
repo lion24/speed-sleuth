@@ -45,7 +45,7 @@ speed-sleuth = "speed_sleuth.cli:main"
 path = "src/speed_sleuth/__init__.py"
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/speed_sleuth/"]
+packages = ["src/speed_sleuth/", "tests"]
 
 [tool.hatch.build.targets.sdist]
 include = [

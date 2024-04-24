@@ -4,12 +4,10 @@
 """Generic Provider class which provides an abstraction for the different
 drivers we would like to use."""
 
-from abc import ABC, abstractmethod
-
-from speed_sleuth.driver import DriverInterface
+import abc
 
 
-class Provider(ABC):
+class Provider(metaclass=abc.ABCMeta):
     """Each driver will be derive from this Abstract provider class.
 
     This class also contains generic methods which needs to be
@@ -17,16 +15,23 @@ class Provider(ABC):
 
     """
 
-    def __init__(self, driver: DriverInterface):
-        self.driver = driver
+    @classmethod
+    def __subclasshook__(cls, subclass):
+        return (
+            hasattr(subclass, "run")
+            and callable(subclass.run)
+            and hasattr(subclass, "parse_results")
+            and callable(subclass.parse_results)
+            or NotImplemented
+        )
 
-    @abstractmethod
-    def run(self, filename):
+    @classmethod
+    @abc.abstractmethod
+    def run(cls, filename):
         """Actual method that would trigger the test for the given provider."""
-        raise NotImplementedError("Should be implemented in daughter class")
 
-    @abstractmethod
-    def parse_results(self):
+    @classmethod
+    @abc.abstractmethod
+    def parse_results(cls):
         """Method that would gather results from the speedtest for the given
         provider."""
-        raise NotImplementedError("Should be implemented in daughter class")

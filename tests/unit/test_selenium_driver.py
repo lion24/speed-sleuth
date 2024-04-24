@@ -3,19 +3,11 @@ from unittest.mock import MagicMock, patch
 
 from selenium.common.exceptions import NoSuchElementException, TimeoutException
 from selenium.webdriver.common.by import By
-from selenium.webdriver.remote.webdriver import WebDriver
 from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.support.ui import WebDriverWait
 
-from speed_sleuth.browser import BrowserInterface
 from speed_sleuth.driver.selenium import SeleniumDriver
-
-
-@BrowserInterface.register
-class MockBrowser:
-    def load_driver(self) -> WebDriver:
-        patcher = patch("selenium.webdriver.remote.webdriver.WebDriver")
-        return patcher.start()
+from tests.mocks.browser import MockBrowser
 
 
 class TestSeleniumDriver(unittest.TestCase):
