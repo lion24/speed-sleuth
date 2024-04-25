@@ -113,9 +113,9 @@ class BrowserFactory:
 
         """
         # selenium is able to cope without.
-        osPlatform = platform.system().lower()
+        os_platform = platform.system().lower()
 
-        match osPlatform:
+        match os_platform:
             case "windows":  # TODO FIX THIS MESS and use webbrowser
                 browser = ""
                 path = None
@@ -169,5 +169,5 @@ class BrowserFactory:
 
             case _:
                 raise OsNotFoundException(
-                    f"Your OS {osPlatform} is not yet implement."
+                    f"Your OS {os_platform} is not yet implement."
                 )

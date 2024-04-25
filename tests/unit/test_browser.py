@@ -65,7 +65,7 @@ class TestBrowser:
 
             if expected_exception:
                 with pytest.raises(ValueError) as exc_info:
-                    instance = BrowserFactory.get_browser()
+                    _ = BrowserFactory.get_browser()
 
                 assert str(exc_info.value) == str(expected_exception)
             else:

@@ -63,14 +63,14 @@ class TestSeleniumDriver(unittest.TestCase):
 
     @patch("selenium.webdriver.support.wait.WebDriverWait", spec=WebDriverWait)
     def test_wait_to_be_visible_returns_false_on_timeout(
-        self, mock_WebDriverWait
+        self, mock_webdriver_wait
     ):
         # Create an instance mock to be returned when WebDriverWait is called
         mock_wait_instance = MagicMock()
         mock_wait_instance.until.side_effect = TimeoutException("Timeout")
 
         # Set the mock to return this instance when instantiated
-        mock_WebDriverWait.return_value = mock_wait_instance
+        mock_webdriver_wait.return_value = mock_wait_instance
 
         # Now call the function under test
         result = self.selenium.wait_to_be_visible(self.element_mock)
