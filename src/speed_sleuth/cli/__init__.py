@@ -29,9 +29,9 @@ def main(count, providers):
 
     for provider in providers:
         class_name = provider.capitalize()
-        ProviderClass = globals().get(class_name)
-        if ProviderClass:
-            instance = ProviderClass(driver)
+        provider_class = globals().get(class_name)
+        if provider_class:
+            instance = provider_class(driver)
             for i in range(count):
                 instance.run(f"{provider}-{i}.png")
         else:

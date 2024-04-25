@@ -72,4 +72,12 @@ class Fast:
             self.driver.cleanup(code)
 
     def parse_results(self):
-        pass
+        """Parses the captured results of the test.
+
+        This method is intended for future implementation, where results
+        obtained from the screenshot or directly from the page will be
+        extracted and structured for further processing or analysis.
+
+        Currently, this method does not perform any actions.
+
+        """
