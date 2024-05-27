@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.2.0](https://github.com/lion24/speed-sleuth/compare/speed_sleuth-v0.1.0...speed_sleuth-v0.2.0) (2024-05-27)
+
+
+### Features
+
+* add better cli support using click ([bece8d4](https://github.com/lion24/speed-sleuth/commit/bece8d486bd453e70e30f4635f394c1828ba6676))
+* add fast.com support ([721acfe](https://github.com/lion24/speed-sleuth/commit/721acfe860e35dbc8e023ebffcd4ad73825b2724))
+
+
+### Documentation
+
+* confirm chrome is working on macos ([df32b7c](https://github.com/lion24/speed-sleuth/commit/df32b7c61ce4ccd2fd160e683e03a36764725d50))
+
 ## 0.1.0 (2024-04-20)
 
 
