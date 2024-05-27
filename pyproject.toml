@@ -16,7 +16,7 @@ maintainers = [
 ]
 dependencies = [
     "click>=8.1.7",
-    "selenium==4.20.0",
+    "selenium==4.21.0",
 ]
 license = { file = "LICENSE.md" }
 keywords = ["selenium", "selenium-webdriver", "webdriver", "headless", "speedtest"]
