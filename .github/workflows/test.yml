@@ -24,7 +24,7 @@ jobs:
     - name: Run unit tests
       run: hatch run test:run-coverage -- -k unit
     - name: Upload coverage reports to Codecov
-      uses: codecov/codecov-action@v4.3.1
+      uses: codecov/codecov-action@v4.4.1
       with:
         flags: unittests
         token: ${{ secrets.CODECOV_TOKEN }}
